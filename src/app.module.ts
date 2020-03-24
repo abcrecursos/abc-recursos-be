@@ -1,4 +1,3 @@
-
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SuppliesModule } from './supplies/supplies.module';
@@ -8,7 +7,7 @@ import { HealthCentersModule } from './health-centers/health-centers.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      `mongodb+srv://lthe-abcrecursos:9s7qZJnUE3qXhjE0@cluster0-ggsvj.mongodb.net/test?retryWrites=true&w=majority`,
+      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0-ggsvj.mongodb.net/test?retryWrites=true&w=majority`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -20,5 +19,4 @@ import { HealthCentersModule } from './health-centers/health-centers.module';
     HealthCentersModule,
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

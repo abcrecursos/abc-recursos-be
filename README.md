@@ -8,7 +8,7 @@ Para mayor información del proyecto:  [#LoHackeamosEntreTodos- ABC Recursos](ht
 ## Stack
 
 - [Nest](https://github.com/nestjs/nest)
-- [MongoDB](https://mongo.org)
+- [MongoDB](https://mongodb.com)
 
 ## Instalación
 

@@ -6,8 +6,8 @@ const AddressSchema = new mongoose.Schema({
   number: { type: String, required: true },
   postalCode: { type: String, required: true },
   city: { type: String, required: true }, //Change this
-  state: { type: String, required: true }, //Change this
-  location: GeoLocationSchema,
+  province: { type: String, required: true }, //Change this
+  geoLocation: GeoLocationSchema,
 });
 
 export default AddressSchema;

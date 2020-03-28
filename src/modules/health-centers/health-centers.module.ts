@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { HealthCentersController } from './health-centers.controller';
 import { HealthCentersService } from './health-centers.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import HealthCenterSchema from 'src/schemas/healthCenter.schema';
-import HealthCenterCategorySchema from 'src/schemas/healthCenterCategory.schema';
+import HealthCenterSchema from '../../database/schemas/healthCenter.schema';
+import HealthCenterCategorySchema from '../../database/schemas/healthCenterCategory.schema';
 
 @Module({
   imports: [

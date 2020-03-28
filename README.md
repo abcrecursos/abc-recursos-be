@@ -47,10 +47,9 @@ $ npm run test:cov
 ABC Recursos es un proyecto open source. Si estás interesad@ en formar parte y aportar tus conocimientos, por favor escribí a eebarcoch@gmail.com.
 
 ## Equipo
-Miembros: Ricardo Pasquini, Micaela Iribarren, Ezequiel Bar Coch, Tomás Caimmi, Eliana Guinta, Francisco Frontalini, Guillermo Bustelo, Matias Camusso
-Technical Leader:
 
-- [Ing. Ezequiel Bär Coch](eebarcoch@gmail.com)
+Miembros:
+-Ricardo Pasquini, Micaela Iribarren, Ezequiel Bar Coch, Tomás Caimmi, Eliana Guinta, Francisco Frontalini, Guillermo Bustelo, Matias Camusso
 
 ## Licencia
 

@@ -4,6 +4,9 @@ import { HealthCenter } from './interfaces/HealthCenter';
 import { Model } from 'mongoose';
 import { CreateHealthCenterDto } from './dto/createHealthCenter.dto';
 import { HealthCenterCategory } from './interfaces/HealthCenterCategory';
+import { CreateHealthCenterCategoryDto } from './dto/createHealthCenterCategory.dto';
+import { GetHealthCenterCategoriesDto } from './dto/getHealthCentersCategories.dto';
+import { GetHealthCenterDto } from './dto/getHealthCenters.dto';
 
 @Injectable()
 export class HealthCentersService {
@@ -13,12 +16,12 @@ export class HealthCentersService {
     private healthCenterCategory: Model<HealthCenterCategory>,
   ) {}
 
-  async findAll(): Promise<HealthCenter[]> {
+  async findAll(): Promise<GetHealthCenterDto[]> {
     return this.healthCenter.find().exec();
   }
 
-  async findAllCategories(): Promise<HealthCenterCategory[]> {
-    return this.healthCenterCategory.find().exec();
+  async findAllCategories(): Promise<GetHealthCenterCategoriesDto[]> {
+    return this.healthCenterCategory.find({}).exec();
   }
 
   async create(
@@ -26,5 +29,14 @@ export class HealthCentersService {
   ): Promise<HealthCenter> {
     const createdSupply = new this.healthCenter(createHealthCenterDto);
     return createdSupply.save();
+  }
+
+  async createCategory(
+    createHealthCenterCategoryDto: CreateHealthCenterCategoryDto,
+  ): Promise<HealthCenterCategory> {
+    const createdHCCategory = new this.healthCenterCategory(
+      createHealthCenterCategoryDto,
+    );
+    return createdHCCategory;
   }
 }

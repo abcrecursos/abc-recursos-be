@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SuppliesModule } from './modules/supplies/supplies.module';
-import { ProvidersModule } from './modules/providers/providers.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { HealthCentersModule } from './modules/health-centers/health-centers.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { OrdersModule } from './modules/orders/orders.module';
 import configuration from '../config/configuration';
 
 @Module({
@@ -37,9 +37,9 @@ import configuration from '../config/configuration';
       inject: [ConfigService],
     }),
     SuppliesModule,
-    ProvidersModule,
     LocationsModule,
     HealthCentersModule,
+    OrdersModule,
   ],
 })
 export class AppModule {}

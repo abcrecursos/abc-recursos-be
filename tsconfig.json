@@ -7,9 +7,9 @@
     "experimentalDecorators": true,
     "target": "es2017",
     "sourceMap": true,
-    "outDir": "./app/dist",
+    "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true
   },
-  "exclude": ["node_modules", "app/dist"]
+  "exclude": ["node_modules", "dist"]
 }

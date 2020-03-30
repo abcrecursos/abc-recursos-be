@@ -10,7 +10,7 @@ import configuration from '../config/configuration';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      // envFilePath: '.env',
       isGlobal: true,
       load: [configuration],
     }),
@@ -26,7 +26,14 @@ import configuration from '../config/configuration';
           password,
           options,
         } = configService.get<any>('database');
-
+        console.log("=========================================================");
+        console.log('protocol', protocol);
+        console.log('name', name);
+        console.log('host', host);
+        console.log('user', user);
+        console.log('password', password);
+        console.log('options', options);
+        console.log("=========================================================");
         return {
           uri: `${protocol}://${user}:${password}@${host}/${name}?${options}`,
           useNewUrlParser: true,

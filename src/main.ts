@@ -2,10 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
-import * as dotenv from 'dotenv';
 
 async function bootstrap() {
-  //dotenv.config({ path: '.env' });
   
   const app = await NestFactory.create(AppModule);
   app.use(helmet());

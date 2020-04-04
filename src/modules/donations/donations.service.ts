@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Donation } from './interfaces/Donation';
 import { Model } from 'mongoose';
 import { CreateDonationDto } from './dto/create-donation.dto';
+import * as mongoose from 'mongoose';
+
 
 @Injectable()
 export class DonationsService {
@@ -10,6 +12,10 @@ export class DonationsService {
 
   async findAll(): Promise<Donation[]> {
     return this.donationModel.find().exec();
+  }
+ 
+  async findAllBySupplyId(supplyId: string):Promise<Donation[]>{
+    return this.donationModel.find({'insumos.supply_id': new mongoose.Types.ObjectId(supplyId)}).exec();
   }
 
   async create(createDonationDto: CreateDonationDto): Promise<Donation> {

@@ -7,7 +7,8 @@ export interface Donation extends Document {
   readonly priority: number;
   readonly state: String,
   readonly insumos: [{
-    type: Schema.Types.ObjectId,
-    quantity:Number
+    supplt_name: string
+    supply_id: Schema.Types.ObjectId,
+    quantity:Number,
   }]
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { DonationsService } from './donations.service';
 import { CreateDonationDto } from './dto/create-donation.dto';
 
@@ -8,6 +8,11 @@ export class DonationsController {
   @Get()
   getAll() {
     return this.donationsSvc.findAll();
+  }
+
+  @Get(':supplyId') 
+  getAllBySupplyId(@Param('supplyId') supplyId: string) {
+    return this.donationsSvc.findAllBySupplyId(supplyId);
   }
 
   @Post()

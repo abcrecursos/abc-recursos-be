@@ -6,7 +6,7 @@ const DonationSchema = new mongoose.Schema({
     priority: { type: Number, default: 5 },
     state: { type: String, enum: Object.keys(DonationStates) },
     insumos: [{
-      supplt_name: {type: String},
+      supply_name: {type: String},
       supply_id: { type: mongoose.Schema.Types.ObjectId, ref: 'supply' },
       quantity:{type:Number}
     }]

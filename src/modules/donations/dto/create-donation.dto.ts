@@ -7,7 +7,7 @@ export class CreateDonationDto {
   readonly priority: number;
   readonly state: String;
   readonly insumos: [{
-    supplt_name: string
+    supply_name: string,
     supply_id: Schema.Types.ObjectId,
     quantity:Number,
   }]

@@ -14,6 +14,10 @@ export class DonationsService {
     return this.donationModel.find().exec();
   }
  
+  async findById(id:string):Promise<Donation>{
+    return this.donationModel.findById(id);
+  }
+
   async findAllBySupplyId(supplyId: string):Promise<Donation[]>{
     return this.donationModel.find({'insumos.supply_id': new mongoose.Types.ObjectId(supplyId)}).exec();
   }

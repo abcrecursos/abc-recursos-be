@@ -10,6 +10,11 @@ export class DonationsController {
     return this.donationsSvc.findAll();
   }
 
+  @Get(':id')
+  getById(@Param('id') id:string){
+    return this.donationsSvc.findById(id);
+  }
+
   @Get(':supplyId') 
   getAllBySupplyId(@Param('supplyId') supplyId: string) {
     return this.donationsSvc.findAllBySupplyId(supplyId);

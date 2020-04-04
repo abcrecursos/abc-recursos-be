@@ -1,8 +1,8 @@
 import { Schema, Document } from 'mongoose';
 
 export interface Donation extends Document {
-  readonly name: string;
-  readonly description: string;
+  readonly title: string;
+  readonly observations: string;
   readonly priority: number;
   readonly state: String;
   readonly items: [

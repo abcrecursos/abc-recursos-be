@@ -3,7 +3,8 @@ import { DonationStates } from 'src/constants/donationStates';
 
 const DonationSchema = new mongoose.Schema(
   {
-    description: { type: String },
+    title: { type: String },
+    observations: { type: String },
     priority: { type: Number, default: 5 },
     state: { type: String, enum: Object.keys(DonationStates) },
     items: [

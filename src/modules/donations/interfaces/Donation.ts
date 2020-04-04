@@ -5,6 +5,7 @@ export interface Donation extends Document {
   readonly observations: string;
   readonly priority: number;
   readonly state: String;
+  readonly healthCenter: Schema.Types.ObjectId;
   readonly items: [
     {
       supply_name: string;

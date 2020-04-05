@@ -1,4 +1,4 @@
-import { DonationItemDto } from './dontaion-item.dto';
+import { DonationItemDto } from './donation-item.dto';
 
 export class CreateDonationDto {
   readonly title: string;

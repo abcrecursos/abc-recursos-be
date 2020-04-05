@@ -5,13 +5,13 @@
 
 ## Descripcion de ABC-Recursos
 
-ABC-Recursos es el nombre de fantasía de un proyecto open source, llevado adelante por voluntarios,que busca dar una solución frente al problema de escasez de equipamiento de protección médica y otros insumos críticos durante la emergencia del COVID-19
+ABC-Recursos es un proyecto open source, llevado adelante por voluntarios, que busca dar una solución frente al problema de escasez de equipamiento de protección médica y otros insumos críticos durante la emergencia del COVID-19
 
 ABC recursos permite canalizar donaciones de equipamiento médico, detectar a los efectores de salud y otras organizaciones médicas con mayor urgencia de insumos, encontrar nuevos productores de equipamiento y facilitar compras, entre otras funcionalidades.   
 
 Algunas funciones según usuario:
 * Los médicos en la primera línea, levantaran  solicitudes de necesidad urgente de ciertos insumos.
- * Los donantes de equipamiento médico encontrarán en la plataforma una suegerencia de donde es mas eficiente donar, y soluciones logisticas.
+ * Los donantes de equipamiento médico encontrarán en la plataforma una sugerencia de donde es mas eficiente donar, y soluciones logisticas.
  * A PyMEs que se están volcando a la produccion de este equipamiento un lugar donde ser encontrados, de manera que  instituciones médicas y gobiernos locales los  encuentren con facilidad para realizar compras.
  * Los compradores de distintos niveles del estado e interesados en donar podran encontrar productores.
 
@@ -62,9 +62,9 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Colaboración
+## Como Colaborar
 
-ABC Recursos es un proyecto open source. Si estás interesad@ en formar parte y aportar tus conocimientos, por favor escribinos un mail para ser incorporado al Slack del proyecto.
+ Si estás interesad@ en formar parte y aportar tus conocimientos, por favor escribinos un mail para ser incorporado al Slack del proyecto.
 
 Actualmente estamos desarrollando el MVP. Si te interesa colaborar podes chequear el progreso de tareas pendientes que podrías tomar aquí:
 https://trello.com/b/z18jqF1u/producto-mvp

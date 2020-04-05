@@ -12,13 +12,13 @@ ABC recursos permite canalizar donaciones de equipamiento médico, detectar a lo
 Algunas funciones según usuario:
 * Los médicos en la primera línea, levantaran  solicitudes de necesidad urgente de ciertos insumos.
  * Los donantes de equipamiento médico encontrarán en la plataforma una sugerencia de donde es mas eficiente donar, y soluciones logisticas.
- * A PyMEs que se están volcando a la produccion de este equipamiento un lugar donde ser encontrados, de manera que  instituciones médicas y gobiernos locales los  encuentren con facilidad para realizar compras.
- * Los compradores de distintos niveles del estado e interesados en donar podran encontrar productores.
+ * Las PyMEs que se están volcando durante la emergencia a la produccion de este equipamiento tendrán un lugar donde registrar a sus productos y ser encontradas, de manera de facilitar las compras por parte de  instituciones médicas y gobiernos locales.
+ * Las organizaciones de salud podrán encontrar productores para comprar.
+ * El API del proyecto dará funcionalidades a la plataforma, y también a tableros de datos que pueden servir a la política pública para monitorear la emergencia (Ministerio Salud / Ministerio Producción).
 
-Este proyecto espera apalancarse en crowdsourcing, y explotar datos para mejorar la eficiencia frente a la urgencia.
-Esta no es un plataforma de compra venta, pero sí es un lugar donde encontrar productores/vendedores. El API del proyecto dará funcionalidades a la app, y a tableros de datos que pueden servir a la política pública (Ministerio Salud / Ministerio Producción).
+Esta app no es un plataforma de compra venta, pero sí es un lugar donde encontrar productores/vendedores.
 
-Para mayor información del proyecto:  [#ABC-Recursos](https://docs.google.com/presentation/d/11mDfurV6uqYacidEBVOcvdYdY3kEkzJV8-IxPl6_Zt4/edit#slide=id.g1f87997393_0_782)
+Más información del proyecto:  [#ABC-Recursos](https://docs.google.com/presentation/d/11mDfurV6uqYacidEBVOcvdYdY3kEkzJV8-IxPl6_Zt4/edit#slide=id.g1f87997393_0_782)
 
 ## Este proyecto
 
@@ -72,7 +72,9 @@ https://trello.com/b/z18jqF1u/producto-mvp
 ## Equipo
 
 Miembros:
-- Ricardo Pasquini <rpasquini@gmail.com>, Micaela Iribarren Mora <micaelairibarrenmora@gmail.com>, Guillermo Bustelo <guillermo.bustelo@gmail.com>, Ezequiel Bar Coch <eebarcoch@gmail.com>, Romina Luzzi, Tomás Caimmi, Eliana Guinta, Francisco Frontalini, Matias Camusso, Romina Marchetti
+- Ricardo Pasquini <rpasquini@gmail.com>, Micaela Iribarren Mora <micaelairibarrenmora@gmail.com>, Guillermo Bustelo <guillermo.bustelo@gmail.com>, Ezequiel Bar Coch <eebarcoch@gmail.com>, Romina Luzzi <luzziromina@gmail.com> Alejandro J Zambrana <alejzambrana@gmail.com>, Tomás Caimmi, Eliana Giunta, Francisco Frontalini, Matias Camusso, Romina Marchetti
+
+`#lohackeamosentretodos`
 
 ## Licencia
 

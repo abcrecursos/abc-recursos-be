@@ -7,7 +7,10 @@ const DonationSchema = new mongoose.Schema(
     observations: { type: String },
     priority: { type: Number, default: 5 },
     state: { type: String, enum: Object.keys(DonationStates) },
-    healthCenter: { type: mongoose.Schema.Types.ObjectId, ref: 'HealthCenter' },
+    healthCenter_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'HealthCenter',
+    },
     items: [
       {
         supply_name: { type: String },

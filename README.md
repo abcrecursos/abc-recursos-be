@@ -72,7 +72,7 @@ https://trello.com/b/z18jqF1u/producto-mvp
 ## Equipo
 
 Miembros:
--[Ricardo Pasquini](rpasquini@gmail.com), [Micaela Iribarren Mora](micaelairibarrenmora@gmail.com), [Guillermo Bustelo](guillermo.bustelo@gmail.com), [Ezequiel Bar Coch](eebarcoch@gmail.com), Tomás Caimmi, Eliana Guinta, Francisco Frontalini, Matias Camusso, Romina Marchetti
+- Ricardo Pasquini <rpasquini@gmail.com>, Micaela Iribarren Mora <micaelairibarrenmora@gmail.com>, Guillermo Bustelo <guillermo.bustelo@gmail.com>, Ezequiel Bar Coch <eebarcoch@gmail.com>, Romina Luzzi, Tomás Caimmi, Eliana Guinta, Francisco Frontalini, Matias Camusso, Romina Marchetti
 
 ## Licencia
 

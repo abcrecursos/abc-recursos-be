@@ -15,6 +15,8 @@ async function bootstrap() {
     }),
   );
 
+  app.setGlobalPrefix('api');
+  
   const options = new DocumentBuilder()
     .setTitle('ABC-RECURSOS-API')
     .setDescription('The abc-recursos API description')

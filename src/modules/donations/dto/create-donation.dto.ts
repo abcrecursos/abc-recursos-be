@@ -1,13 +1,10 @@
-import { Supply } from "src/modules/supplies/interfaces/Supply";
-import { Schema, Document } from 'mongoose';
+import { DonationItemDto } from './donation-item.dto';
 
 export class CreateDonationDto {
-  readonly name: string;
-  readonly description: string;
+  readonly title: string;
+  readonly observations: string;
   readonly priority: number;
-  readonly state: String;
-  readonly insumos: [{
-    type:  Schema.Types.ObjectId,
-    quantity: Number
-  }]
+  readonly state: string;
+  readonly healthCenter_id: string;
+  readonly items: DonationItemDto[];
 }

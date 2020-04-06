@@ -1,6 +1,6 @@
 export enum DonationStates {
-  Pendiente = 'Pendiente',
-  Aceptado = 'Aceptado',
-  Viajando = 'Viajando',
-  Entregado = 'Entregado'
+  Pending = 'Pendiente',
+  Accepted = 'Aceptado',
+  Traveling = 'Viajando',
+  Delivered = 'Entregado',
 }

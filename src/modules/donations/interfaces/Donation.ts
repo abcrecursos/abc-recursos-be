@@ -1,13 +1,11 @@
 import { Schema, Document } from 'mongoose';
-import { Supply } from 'src/modules/supplies/interfaces/Supply';
+import { DonationItem } from './DonationItem';
 
 export interface Donation extends Document {
-  readonly name: string;
-  readonly description: string;
+  readonly title: string;
+  readonly observations: string;
   readonly priority: number;
-  readonly state: String,
-  readonly insumos: [{
-    type: Schema.Types.ObjectId,
-    quantity:Number
-  }]
+  readonly state: string;
+  readonly healthCenter_id: Schema.Types.ObjectId;
+  readonly items: DonationItem[];
 }

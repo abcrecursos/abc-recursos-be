@@ -1,18 +1,29 @@
 import * as mongoose from 'mongoose';
 import AddressSchema from './address.schema';
-import { HealthCenterTypes } from '../../constants/healthCentersTypes';
 import PhoneSchema from './phone.schemas';
-
-const HealthCenterSchema = new mongoose.Schema({
+import { ProducerTypes } from '../../constants/producerTypes';
+const ProducerSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  cuit: String,
   description: String,
-  address: AddressSchema,
   category: {
     type: String,
-    enum: Object.keys(HealthCenterTypes),
-    default: HealthCenterTypes.Hospital,
+    enum: Object.keys(ProducerTypes),
+    default: ProducerTypes.PyME,
   },
-  phone: PhoneSchema
-});
+  address: AddressSchema,
+  email: String,
+  phone: PhoneSchema,
+  insumos: [{
+    type: { type: mongoose.Schema.Types.ObjectId, ref: 'supply' },
+    quantity:{type:Number}
+  }],
+}
+,
+{
+  timestamps: true
+}
 
-export default HealthCenterSchema;
+);
+
+export default ProducerSchema;

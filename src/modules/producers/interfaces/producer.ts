@@ -1,6 +1,7 @@
 import { Document } from 'mongoose';
 import { Phone } from '../../phones/interfaces/phone.interface';
 import { Address } from '../../locations/interfaces/address.interface';
+import {SupplyItem} from './supplyItem'
 
 export interface Producer extends Document {
   readonly name: string;
@@ -9,4 +10,5 @@ export interface Producer extends Document {
   readonly address: Address;
   readonly email: string;
   readonly phone: Phone;
+  readonly supply: SupplyItem[];
 }

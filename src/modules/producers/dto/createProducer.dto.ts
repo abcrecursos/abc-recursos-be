@@ -1,5 +1,6 @@
 import { Address } from '../../locations/interfaces/address.interface';
 import { Phone } from '../../phones/interfaces/phone.interface';
+import {SupplyItemDto} from './supplyItem.dto';
 
 export class CreateProducerDto {
 
@@ -8,4 +9,5 @@ export class CreateProducerDto {
   readonly description: string;
   readonly address: Address;
   readonly phone: Phone;
+  readonly supply: SupplyItemDto[];
 }

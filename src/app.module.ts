@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SuppliesModule } from './modules/supplies/supplies.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { HealthCentersModule } from './modules/health-centers/health-centers.module';
+import { ProducersModule } from './modules/producers/producers.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { OrdersModule } from './modules/orders/orders.module';
 import { DonationsModule } from './modules/donations/donations.module';
@@ -41,6 +42,7 @@ import configuration from '../config/configuration';
     LocationsModule,
     HealthCentersModule,
     OrdersModule,
-  ],
+    ProducersModule,
+    ],
 })
 export class AppModule {}

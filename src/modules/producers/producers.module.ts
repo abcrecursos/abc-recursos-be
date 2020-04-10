@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ProducersController } from './producers.controller';
 import { ProducersService } from './producers.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import ProducerSchema from '../../database/schemas/healthCenter.schema';
-import ProducerCategorySchema from '../../database/schemas/healthCenterCategory.schema';
+import ProducerSchema from '../../database/schemas/producer.schema';
+import ProducerCategorySchema from '../../database/schemas/producerCategory.schema';
 
 @Module({
   imports: [

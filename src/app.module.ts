@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { OrdersModule } from './modules/orders/orders.module';
 import { DonationsModule } from './modules/donations/donations.module';
 import configuration from '../config/configuration';
+import { OrganizationsModule } from './modules/organizations/organizations.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import configuration from '../config/configuration';
     HealthCentersModule,
     OrdersModule,
     ProducersModule,
+    OrganizationsModule
     ],
 })
 export class AppModule {}

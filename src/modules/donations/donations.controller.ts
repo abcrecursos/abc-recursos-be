@@ -11,17 +11,17 @@ export class DonationsController {
   }
 
   @Get(':id')
-  getById(@Param('id') id:string){
+  getById(@Param('id') id: string) {
     return this.donationsSvc.findById(id);
   }
 
-  @Get(':supplyId') 
+  @Get(':supplyId')
   getAllBySupplyId(@Param('supplyId') supplyId: string) {
     return this.donationsSvc.findAllBySupplyId(supplyId);
   }
 
   @Post()
   async create(@Body() createDonationDto: CreateDonationDto) {
-    await this.donationsSvc.create(createDonationDto);
+    return await this.donationsSvc.create(createDonationDto);
   }
 }

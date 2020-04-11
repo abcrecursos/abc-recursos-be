@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
 
-const HealthCenterCategorySchema = new mongoose.Schema({
+const ProducerCategorySchema = new mongoose.Schema({
   name: String,
   description: String,
 });
 
-export default HealthCenterCategorySchema;
+export default ProducerCategorySchema;

@@ -29,12 +29,8 @@ export class ProducersService {
     return createdSupply.save();
   }
 
-  async createCategory(
-    createProducerCategoryDto: CreateProducerCategoryDto,
-  ): Promise<ProducerCategory> {
-    const createdHCCategory = new this.ProducerCategory(
-      createProducerCategoryDto,
-    );
+  async createCategory(createProducerCategoryDto: CreateProducerCategoryDto): Promise<ProducerCategory> {
+    const createdHCCategory = new this.ProducerCategory(createProducerCategoryDto);
     return createdHCCategory;
   }
 }

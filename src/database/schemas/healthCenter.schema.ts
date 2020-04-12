@@ -10,7 +10,7 @@ const HealthCenterSchema = new mongoose.Schema({
   category: {
     type: String,
     enum: Object.keys(HealthCenterTypes),
-    default: HealthCenterTypes.Hospital,
+    default: HealthCenterTypes.Sd,
   },
   phone: PhoneSchema
 });

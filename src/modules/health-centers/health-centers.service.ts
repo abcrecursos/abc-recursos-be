@@ -22,7 +22,7 @@ export class HealthCentersService {
   }
 
   async findAllByLocalityId(localidadId: number):Promise<GetHealthCenterDto[]>{
-    return this.healthCenter.find({'direccion.localidad_id': localidadId}).exec();
+    return this.healthCenter.find({'address.locality_id': localidadId}).exec();
   }
 
   async findAllCategories(): Promise<GetHealthCenterCategoriesDto[]> {

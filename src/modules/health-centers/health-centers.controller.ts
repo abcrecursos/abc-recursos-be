@@ -12,7 +12,7 @@ export class HealthCentersController {
     return this.healthCenterSvc.findAll();
   }
 
-  @Get(':localityId')
+  @Get('locality/:localityId')
   async findAllByLocalityId(@Param('localityId') localityId: number) {
     return this.healthCenterSvc.findAllByLocalityId(localityId);
   }

@@ -15,8 +15,9 @@ export class LocationsController {
     return this.locationsSvc.findAllDepartmentsByProvinceId(id);
   }
 
-  @Get('cities')
-  findAllCities(@Query('departmentId') id: string) {
-    return this.locationsSvc.findAllCitiesByDepartmentId(id);
+  @Get('localities')
+  findAllLocalitiesByDepartmentId(@Query('departmentId') id: string) {
+    return this.locationsSvc.findAllLocalitiesByDepartmentId(id);
   }
+
 }

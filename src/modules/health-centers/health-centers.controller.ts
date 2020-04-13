@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { HealthCentersService } from './health-centers.service';
 import { CreateHealthCenterCategoryDto } from './dto/createHealthCenterCategory.dto';
 import { CreateHealthCenterDto } from './dto/createHealthCenter.dto';
@@ -12,8 +12,8 @@ export class HealthCentersController {
     return this.healthCenterSvc.findAll();
   }
 
-  @Get('locality/:localityId')
-  async findAllByLocalityId(@Param('localityId') localityId: number) {
+  @Get('localities')
+  async findAllByLocalityId(@Query('localityId') localityId: number) {
     return this.healthCenterSvc.findAllByLocalityId(localityId);
   }
 

@@ -25,17 +25,19 @@ export class LocationsService {
       .pipe(map((response: any) => response.data.departamentos));
   }
 
-  //async findAllCitiesByDepartmentId(id: string) {
-    //return this.http
-      //.get(
-      //  `${this.geoRefApi}ciudades?campos=nombre,centroide.lat,centroide.lon,ciudad.id,ciudad.nombre&ciudad=${id}`,
-      //)
-      //.pipe(map((response: any) => response.data.ciudades));
-  //}
+
   async findAllLocalitiesByDepartmentId(id: string) {
     return this.http
       .get(
         `${this.geoRefApi}localidades?campos=nombre,centroide.lat,centroide.lon,localidad_censal.id,localidad_censal.nombre&departamento=${id}&max=5000`,
+      )
+      .pipe(map((response: any) => response.data.localidades));
+  }
+
+  async findAllLocalitiesByProvinceId(id: string) {
+    return this.http
+      .get(
+        `${this.geoRefApi}localidades?campos=nombre,centroide.lat,centroide.lon,localidad_censal.id,localidad_censal.nombre&provincia=${id}&max=5000`,
       )
       .pipe(map((response: any) => response.data.localidades));
   }

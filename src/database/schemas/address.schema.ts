@@ -9,9 +9,9 @@ const AddressSchema = new mongoose.Schema({
   departmento: { type: String, required: false },
   province: { type: String, required: true }, //Change this
 
-  locality_id:{ type: Number, required: false },
-  province_id:{ type: Number, required: false },
-  departamento_id:{ type: Number, required: false },
+  locality_id:{ type: String, required: false },
+  province_id:{ type: String, required: false },
+  departamento_id:{ type: String, required: false },
 
   geoLocation: GeoLocationSchema,
 });

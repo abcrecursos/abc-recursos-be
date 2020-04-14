@@ -13,7 +13,8 @@ export enum HealthCenterTypes {
   Essdit = 'Establecimiento de salud sin internación de diagnóstico y tratamiento',
   Essid = 'Establecimiento de salud sin internación de diagnóstico',
   Essit = 'Establecimiento de salud sin internación de tratamiento',
-  Escl = 'Establecimiento de salud complementario'
+  Escl = 'Establecimiento de salud complementario',
+  Esnoasist = 'Otros'
 
 
   }

@@ -7,6 +7,7 @@ import { HealthCenterCategory } from './interfaces/HealthCenterCategory';
 import { CreateHealthCenterCategoryDto } from './dto/createHealthCenterCategory.dto';
 import { GetHealthCenterCategoriesDto } from './dto/getHealthCentersCategories.dto';
 import { GetHealthCenterDto } from './dto/getHealthCenters.dto';
+import * as mongoose from 'mongoose';
 
 @Injectable()
 export class HealthCentersService {
@@ -18,6 +19,10 @@ export class HealthCentersService {
 
   async findAll(): Promise<GetHealthCenterDto[]> {
     return this.healthCenter.find().exec();
+  }
+
+  async findAllByLocalityId(localidadId: number):Promise<GetHealthCenterDto[]>{
+    return this.healthCenter.find({'address.locality_id': localidadId}).exec();
   }
 
   async findAllCategories(): Promise<GetHealthCenterCategoriesDto[]> {

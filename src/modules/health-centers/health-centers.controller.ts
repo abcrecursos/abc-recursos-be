@@ -13,8 +13,13 @@ export class HealthCentersController {
   }
 
   @Get('localities')
-  async findAllByLocalityId(@Query('localityId') localityId: number) {
+  async findAllByLocalityId(@Query('localityId') localityId: string) {
     return this.healthCenterSvc.findAllByLocalityId(localityId);
+  }
+
+  @Get('localitieslist')
+  async findAllLocalitiesByProvinceId(@Query('provinceId') provinciaId: string) {
+    return this.healthCenterSvc.findAllLocalitiesByProvinceId(provinciaId);
   }
 
   @Post()

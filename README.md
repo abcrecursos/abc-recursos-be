@@ -75,7 +75,7 @@ https://trello.com/b/z18jqF1u/producto-mvp
 ## Equipo
 
 Miembros:
-- Ricardo Pasquini <rpasquini@gmail.com>, Micaela Iribarren Mora <micaelairibarrenmora@gmail.com>, Guillermo Bustelo <guillermo.bustelo@gmail.com>, Ezequiel Bar Coch <eebarcoch@gmail.com>, Romina Luzzi <luzziromina@gmail.com> Alejandro J Zambrana <alejzambrana@gmail.com>, Tomás Caimmi, Eliana Giunta, Francisco Frontalini, Matias Camusso, Romina Marchetti
+- Ricardo Pasquini <rpasquini@gmail.com>, Micaela Iribarren Mora <micaelairibarrenmora@gmail.com>, Guillermo Bustelo <guillermo.bustelo@gmail.com>, Ezequiel Bar Coch <eebarcoch@gmail.com>, Romina Luzzi <luzziromina@gmail.com> Alejandro J Zambrana <alejzambrana@gmail.com>, Tomás Caimmi, Eliana Giunta, Francisco Frontalini, Matias Camusso,  Romina Marchetti, Andrés	Spalletta, Damián	Alva , Facundo	Ibarzábal, Emiliano	Dalla Verde Marcozzi, Agustín Adrián	Córdoba, Sofia	Bonavena
 
 `#lohackeamosentretodos`
 

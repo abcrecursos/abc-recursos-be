@@ -1,4 +1,6 @@
-# Descripción de JuntAR
+# Juntar API
+
+## Descripción de JuntAR
 
 JuntAR es un proyecto open source, llevado adelante por voluntarios, que busca dar una solución frente al problema de escasez de equipamiento de protección médica y otros insumos críticos durante la emergencia del COVID-19
 

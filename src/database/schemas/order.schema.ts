@@ -1,5 +1,7 @@
 import * as mongoose from 'mongoose';
 import { DonationStates } from 'src/constants/donationStates';
+import AddressSchema from './address.schema';
+import PhoneSchema from './phone.schemas';
 
 const OrderSchema = new mongoose.Schema(
   {
@@ -22,6 +24,9 @@ const OrderSchema = new mongoose.Schema(
         quantity: { type: Number },
       },
     ],
+
+    address: AddressSchema,
+    phone: PhoneSchema,
   },
   {
     timestamps: true,

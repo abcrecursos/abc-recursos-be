@@ -16,4 +16,23 @@ export class SuppliesService {
     const createdSupply = new this.supplyModel(createSupplyDto);
     return createdSupply.save();
   }
+
+  /**
+  Verifies if a supply exists.
+
+  id Supply ID.
+
+  Returns a promise that will resolve to true if supply exists, false otherwise.
+  */
+  async exists(id: string): Promise<boolean> {
+
+    return new Promise(async (resolve, reject) => {
+
+      this
+      .supplyModel
+      .findById(id)
+      .then(model => resolve(model != null))
+      .catch(reject);
+    });
+  }
 }

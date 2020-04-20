@@ -1,11 +1,24 @@
 import { Schema, Document } from 'mongoose';
 import { DonationItem } from './DonationItem';
 
+/**
+Represents a donation of a person to an
+organization.
+*/
 export interface Donation extends Document {
-  readonly title: string;
-  readonly observations: string;
-  readonly priority: number;
+	
+  /**
+  Current state of a donation.
+  */
   readonly state: string;
-  readonly healthCenter_id: Schema.Types.ObjectId;
+
+  /**
+  Benefited health center ID.
+  */
+  readonly healthCenter: Schema.Types.ObjectId;
+
+  /**
+  Donated items.
+  */
   readonly items: DonationItem[];
 }

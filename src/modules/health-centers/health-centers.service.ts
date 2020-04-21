@@ -55,4 +55,24 @@ export class HealthCentersService {
     );
     return createdHCCategory;
   }
+
+  /**
+  Checks if a HealthCenter with provided ID exists.
+
+  id ID of HealthCenter to check.
+
+  Returns a promise that will resolve to true if HealthCenter with
+  provided ID exists, false otherwhise.
+  */
+  async exists(id: string): Promise<boolean> {
+
+    return new Promise(async (resolve, reject) => {
+
+      this
+      .healthCenter
+      .findById(id)
+      .then(model => resolve(model != null))
+      .catch(reject);
+    });
+  }
 }

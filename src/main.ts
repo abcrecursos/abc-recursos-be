@@ -4,6 +4,7 @@ import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe, HttpStatus } from '@nestjs/common';
+import { useContainer } from 'class-validator';
 import { ValidationException } from './exceptions/validation.exception';
 
 async function bootstrap() {
@@ -39,6 +40,7 @@ async function bootstrap() {
      )
    );
 
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
   await app.listen(process.env.PORT || 3000, '0.0.0.0');
   console.log(`Application is running on: ${await app.getUrl()}`);
 }

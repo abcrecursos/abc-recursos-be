@@ -1,5 +1,11 @@
 import { ValidationError, UnprocessableEntityException } from '@nestjs/common';
 
+type PropertyError = {
+	property: string,
+	errors: any[],
+	children?: PropertyError[]
+};
+
 /**
 Represents an exception with validation errors.
 
@@ -12,8 +18,30 @@ export class ValidationException extends UnprocessableEntityException {
 
 			return {
 				property: current.property,
-				errors: current.constraints
+				errors: current.constraints,
+				children: ValidationException.getErrorsFromChildren(current.children)
 			};
 		}))
+	}
+
+	private static getErrorsFromChildren(children): PropertyError[] {
+
+		let ret: PropertyError[] = [];
+
+		ret = children.map(function(current) {
+
+			let retPropertyError: PropertyError = {
+				property: current.property,
+				errors: current.constraints
+			};
+
+			if (!!current.children) {
+				retPropertyError.children = ValidationException.getErrorsFromChildren(current.children);
+			}
+
+			return retPropertyError;
+		});
+
+		return ret;
 	}
 }

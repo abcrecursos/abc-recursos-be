@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import HealthCenterSchema from '../../database/schemas/healthCenter.schema';
 import HealthCenterCategorySchema from '../../database/schemas/healthCenterCategory.schema';
 import LocalitiesRefesSchema from '../../database/schemas/localitiesRefes.schema';
+import { HealthCenterExists } from './';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import LocalitiesRefesSchema from '../../database/schemas/localitiesRefes.schema
     ]),
   ],
   controllers: [HealthCentersController],
-  providers: [HealthCentersService],
+  providers: [HealthCentersService, HealthCenterExists],
+  exports: [HealthCentersService, HealthCenterExists],
 })
 export class HealthCentersModule {}

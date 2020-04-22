@@ -2,12 +2,12 @@ import * as mongoose from 'mongoose';
 import { DonationStates } from 'src/constants/donationStates';
 import AddressSchema from './address.schema';
 import PhoneSchema from './phone.schemas';
-
+import PersonSchema from './person.schema';
 const OrderSchema = new mongoose.Schema(
   {
-    person_name: { type: String , required: true },
-    person_lastname: { type: String , required: true },
-    email: { type: String , required: true },
+// cambiar a requerido
+    person_id: { type: String , required: false },
+    person: PersonSchema,
 
     observations: { type: String },
     priority: { type: Number, default: 5 },

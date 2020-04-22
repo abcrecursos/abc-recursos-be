@@ -1,18 +1,16 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import  OrderSchema   from "../../database/schemas/order.schema";
-import  AddressSchema   from "../../database/schemas/address.schema";
-import  PhoneSchema   from "../../database/schemas/phone.schemas";
+import  PersonSchema   from "../../database/schemas/person.schema";
 
 import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
-
+import { PeopleService } from '../people/people.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Order', schema: OrderSchema },
-  { name: 'Address', schema: AddressSchema },
-  { name: 'Phone', schema: PhoneSchema }])],
+  { name: 'Person', schema: PersonSchema }])],
   controllers: [OrdersController],
-  providers: [OrdersService]
+  providers: [OrdersService, PeopleService]
 })
 export class OrdersModule {}

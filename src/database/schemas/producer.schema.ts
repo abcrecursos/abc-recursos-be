@@ -19,9 +19,17 @@ const ProducerSchema = new mongoose.Schema({
   //  type: { type: mongoose.Schema.Types.ObjectId, ref: 'supply' },
   //  quantity:{type:Number}
 //  }],
-insumos:[SupplySchema],
+supply:[SupplySchema],
 //  type: { type: mongoose.Schema.Types.ObjectId, ref: 'supply' },
 //  quantity:{type:Number}
+person_id: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'Person',
+},
+user_id: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'User',
+},
 }
 ,
 {

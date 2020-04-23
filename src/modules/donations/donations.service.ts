@@ -4,7 +4,7 @@ import { Donation } from './interfaces/Donation';
 import { Model } from 'mongoose';
 import { CreateDonationDto } from './dto/create-donation.dto';
 import * as mongoose from 'mongoose';
-import { Tracking } from './interfaces/tracking';
+import { Tracking } from './interfaces/Tracking';
 
 @Injectable()
 export class DonationsService {
@@ -17,7 +17,7 @@ export class DonationsService {
   async findAll(): Promise<Donation[]> {
     return this.donationModel.find().exec();
   }
- 
+
   async findById(id:string):Promise<Donation>{
     return this.donationModel.findById(id).exec();
   }

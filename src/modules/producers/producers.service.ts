@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Producer } from './interfaces/producer';
+import { Person } from '../people/interfaces/person';
+
 import { Model } from 'mongoose';
 import { CreateProducerDto } from './dto/createProducer.dto';
 import { ProducerCategory } from './interfaces/producerCategory';
@@ -14,6 +16,9 @@ export class ProducersService {
     @InjectModel('Producer') private Producer: Model<Producer>,
     @InjectModel('ProducerCategory')
     private ProducerCategory: Model<ProducerCategory>,
+    @InjectModel('Person')
+    private personModel: Model<Person>,
+
   ) {}
 
   async findAll(): Promise<GetProducerDto[]> {
@@ -25,8 +30,21 @@ export class ProducersService {
   }
 
   async create(createProducerDto: CreateProducerDto): Promise<Producer> {
-    const createdSupply = new this.Producer(createProducerDto);
-    return createdSupply.save();
+
+    const createdPerson = new this.personModel(createProducerDto.person);
+    const result=await createdPerson.save()
+   //console.log(result)
+
+    const createdProducer = new this.Producer({person_id: result.id,
+    user_id: result.user_id,
+    name: createProducerDto.name,
+    cuit: createProducerDto.cuit,
+    description: createProducerDto.description,
+    address: createProducerDto.address,
+    phone: createProducerDto.phone,
+    supply: createProducerDto.supply});
+
+    return createdProducer.save();
   }
 
   async createCategory(createProducerCategoryDto: CreateProducerCategoryDto): Promise<ProducerCategory> {

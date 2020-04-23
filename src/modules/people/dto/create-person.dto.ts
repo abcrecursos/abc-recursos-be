@@ -11,7 +11,7 @@ export class CreatePersonDto {
 
 	readonly address: Address;
 	readonly phone: Phone;
-	readonly userId: string;
+	readonly user_id: string;
 	// readonly username: string;
 
 

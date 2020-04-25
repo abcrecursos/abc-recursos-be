@@ -1,6 +1,5 @@
 import { Schema, Document } from 'mongoose';
 import { Donation } from './Donation';
-import { DonationItem } from './DonationItem';
 import { TrackingStep } from './TrackingStep';
 
 /**
@@ -16,7 +15,7 @@ export interface Tracking extends Document {
   /**
   Donation beign tracked.
   */
-  readonly donation: Schema.Types.ObjectId;
+  readonly donation: Schema.Types.ObjectId | Donation;
 
   /**
   Tracking steps made throug donation lifetime.

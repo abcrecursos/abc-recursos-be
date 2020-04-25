@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Donation } from './interfaces/Donation';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose';
 
-import { Tracking } from './interfaces/tracking';
+import { Tracking, Donation } from './interfaces';
 import { TrackingStep } from './interfaces/TrackingStep';
 import { DonationStates } from '../../constants/donationStates';
 
@@ -69,7 +68,12 @@ export class TrackingService {
   */
   private populate(query: mongoose.DocumentQuery<Tracking, Tracking, {}>) {
 
-    query.populate('donation_id').populate('steps');
+    return query.populate('donation_id').populate('steps');
+  }
+
+  private populateArray(query: mongoose.DocumentQuery<Tracking[], Tracking, {}>) {
+
+    return query.populate('donation_id').populate('steps');
   }
 
   
@@ -77,7 +81,8 @@ export class TrackingService {
   Finds all tracked donations.
   */
   async findAll(): Promise<Tracking[]> {
-    return this.trackingModel.find().exec();
+
+    return this.populateArray(this.trackingModel.find()).exec();
   }
 
   /**

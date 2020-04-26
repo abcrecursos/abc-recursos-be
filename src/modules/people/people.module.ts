@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PeopleService } from './people.service';
 import { PeopleController } from './people.controller';
 import PersonSchema from '../../database/schemas/person.schema';
+import { PeopleExists } from './validation';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import PersonSchema from '../../database/schemas/person.schema';
     ]),
   ],
   controllers: [PeopleController],
-  providers: [PeopleService],
-  exports: [PeopleService]
+  providers: [PeopleService, PeopleExists],
+  exports: [PeopleService, PeopleExists]
 })
 export class PeopleModule {}

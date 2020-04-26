@@ -15,6 +15,7 @@ const OrderSchema = new mongoose.Schema(
     healthCenter_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'HealthCenter',
+      alias: 'healthCenter'
     },
 
     items: [

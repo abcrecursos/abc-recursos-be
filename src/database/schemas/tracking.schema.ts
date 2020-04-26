@@ -6,6 +6,7 @@ const TrackingSchema = new mongoose.Schema(
     donation_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Donation',
+      alias: 'donation'
     },
     steps: [{
       type: mongoose.Schema.Types.ObjectId,

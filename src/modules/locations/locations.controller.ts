@@ -25,4 +25,10 @@ export class LocationsController {
     return this.locationsSvc.findAllLocalitiesByProvinceId(id);
   }
 
+  @Get('address/:address')
+  geocodeAddress(@Param('address') address: string) {
+    return this.locationsSvc.geocodeAddress(address);
+  }
+
+
 }

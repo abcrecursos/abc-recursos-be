@@ -5,8 +5,12 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class LocationsService {
   geoRefApi: string;
+  geoRefArcGisApi: string;
   constructor(private http: HttpService, private configSrv: ConfigService) {
     this.geoRefApi = this.configSrv.get<string>('externalApis.gobArGeoRef');
+    this.geoRefArcGisApi = this.configSrv.get<string>('externalApis.arcGis');
+
+
   }
 
   async findAllProvinces() {
@@ -41,6 +45,34 @@ export class LocationsService {
       )
       .pipe(map((response: any) => response.data.localidades));
   }
+
+  //async geocodeAddress(direccion: string) {
+  //  var that = this;
+
+    //return new Promise(function(resolve, reject) {
+      //that.http
+      //.get(`${this.geoRefArcGisApi}findAddressCandidates?SingleLine=${direccion}&category=&outFields=*&countryCode=ARG&forStorage=false&f=pjson`,)
+      //.subscribe(resolve, reject);
+    //}.bind(this));
+
+async geocodeAddress(address: string) {
+//address debe pasar un string con el formato:  calle numero, partido, provincia
+// por ejemplo: Azcuenaga 1240, Vicente Lopez, Buenos Aires
+// Devuelve las coordenadas 
+
+console.log(address);
+const request=`${this.geoRefArcGisApi}findAddressCandidates?SingleLine=${address}&category=&outFields=*&countryCode=ARG&forStorage=false&f=pjson`;
+console.log(request);
+
+  const myresponse= await this.http
+    .get(`${this.geoRefArcGisApi}findAddressCandidates?SingleLine=${address}&category=&outFields=*&countryCode=ARG&forStorage=false&f=pjson`,)
+  .pipe(map((response: any) => response.data.candidates[0].location));
+
+  return myresponse
+
+        }
+
+
 
 
 }

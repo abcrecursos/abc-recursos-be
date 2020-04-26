@@ -6,7 +6,10 @@ import PersonSchema from './person.schema';
 const OrderSchema = new mongoose.Schema(
   {
 // cambiar a requerido
-    person_id: { type: String , required: false },
+    person_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Person',
+    },
     person: PersonSchema,
 
     observations: { type: String },

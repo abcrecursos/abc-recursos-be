@@ -48,7 +48,7 @@ export class TrackingService {
     let today: Date = new Date();
 
     //YYYYMMDD
-    let ret: string = 
+    let ret: string =
       today.getFullYear().toString()
      + today.getMonth().toString().padStart(2, '0')
      + today.getDay().toString().padStart(2, '0');
@@ -62,7 +62,7 @@ export class TrackingService {
     return ret;
   };
 
-  
+
   /**
   Populates a query with dependant data.
   */
@@ -76,7 +76,7 @@ export class TrackingService {
     return query.populate('donation_id').populate('steps');
   }
 
-  
+
   /**
   Finds all tracked donations.
   */
@@ -152,7 +152,7 @@ export class TrackingService {
       donation,
       trackingSteps
     ));
-    
+
     //Save and retrieve Tracking model.
     await createdModel.save();
     createdModel = await this.findById(createdModel.id);

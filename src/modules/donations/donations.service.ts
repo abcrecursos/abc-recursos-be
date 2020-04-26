@@ -15,7 +15,7 @@ export class DonationsService {
   async findAll(): Promise<Donation[]> {
     return this.donationModel.find().exec();
   }
- 
+
   async findById(id:string):Promise<Donation>{
     return this.donationModel.findById(id).exec();
   }

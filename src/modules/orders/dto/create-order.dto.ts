@@ -1,16 +1,11 @@
-import { Address } from "../../locations/interfaces/address.interface";
-import { Phone } from "../../phones/interfaces/phone.interface";
+import { Person } from "../../people/interfaces/person";
+
 import { OrderItemDto } from  "./order-item.dto";
 import { User } from  "../../users/interfaces/user";
 
 
 export class CreateOrderDto {
-  readonly person_name: string;
-  readonly person_lastname: string;
-  readonly email: string;
-
-  readonly address: Address;
-  readonly phone: Phone;
+  readonly person: Person;
 
   readonly priority: number;
   readonly state: string;

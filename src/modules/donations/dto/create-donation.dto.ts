@@ -3,12 +3,15 @@ import { ArrayMinSize , ValidateNested, Validate } from 'class-validator';
 import { Type } from 'class-transformer';
 import { DonationsValidationConstants } from '../../../constants/validation/donation-validation-constants';
 
+import { OrderExists } from '../../orders';
+import { PeopleExists } from '../../people';
+
 export class CreateDonationDto {
 
-	//TODO Crear validador de que exista la orden
+	@Validate(OrderExists)
   readonly order_id: String;
 
-  //TODO crear validador de que exista la persona.
+  @Validate(PeopleExists)
   readonly person_id: String;
 
   //https://stackoverflow.com/questions/58343262/class-validator-validate-array-of-objects

@@ -5,3 +5,4 @@ export * from './tracking-step-out.dto';
 export * from './donation-item-out.dto';
 export * from './donation-out.dto';
 export * from './orders-suggestions.dto';
+export * from './order-out.dto';

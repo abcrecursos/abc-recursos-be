@@ -8,6 +8,8 @@ import TrackingSchema from '../../database/schemas/tracking.schema';
 import TrackingStepSchema from '../../database/schemas/trackingStep.schema';
 import { SuppliesModule } from '../supplies/supplies.module';
 import { HealthCentersModule } from '../health-centers/health-centers.module';
+import { OrdersModule } from '../orders/orders.module';
+import { PeopleModule } from '../people/people.module';
 
 @Module({
   imports: [
@@ -15,7 +17,9 @@ import { HealthCentersModule } from '../health-centers/health-centers.module';
   	MongooseModule.forFeature([{ name: 'Tracking', schema: TrackingSchema }]),
   	MongooseModule.forFeature([{ name: 'TrackingStep', schema: TrackingStepSchema }]),
   	SuppliesModule,
-  	HealthCentersModule
+  	HealthCentersModule,
+  	OrdersModule,
+    PeopleModule
   ],
   controllers: [DonationsController],
   providers: [DonationsService, TrackingService],

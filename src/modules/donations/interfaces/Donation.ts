@@ -13,9 +13,14 @@ export interface Donation extends Document {
   readonly state: string;
 
   /**
-  Benefited health center ID.
+  Referenced Order ID.
   */
-  readonly healthCenter: Schema.Types.ObjectId;
+  readonly order: Schema.Types.ObjectId;
+
+  /**
+  Referenced Donator ID.
+  */
+  readonly person: Schema.Types.ObjectId;
 
   /**
   Donated items.

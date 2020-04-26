@@ -12,6 +12,10 @@ export class PeopleService {
 
   constructor(@InjectModel('Person') private personModel: Model<Person>) {}
 
+  async findById(id: string): Promise<Person> {
+
+  	return this.personModel.findById(id).exec();
+  }
 
   async create(
     createPersonDto: CreatePersonDto,
@@ -20,4 +24,7 @@ export class PeopleService {
     return createdPerson.save();
   }
 
+  async exists(id: string): Promise<boolean> {
+  	return await this.findById(id) != null;
+  }
 }

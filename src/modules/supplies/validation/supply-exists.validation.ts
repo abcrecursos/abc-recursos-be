@@ -6,7 +6,7 @@ import { SupplyValidationConstants } from '../../../constants/validation/supply-
 /**
  Verifies that a Supply exists based on the ID.
 */
-@ValidatorConstraint({ name: 'HealthCenterExists', async: true })
+@ValidatorConstraint({ name: 'SupplyExists', async: true })
 @Injectable()
 export class SupplyExists implements ValidatorConstraintInterface {
   constructor(protected readonly suppliesService: SuppliesService) {}

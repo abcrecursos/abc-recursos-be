@@ -8,9 +8,9 @@ const DonationSchema = new mongoose.Schema(
       enum: Object.keys(DonationStates),
       default: 'Pending'
     },
-    healthCenter_id: {
+    order_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'HealthCenter',
+      ref: 'Order',
     },
     items: [
       {

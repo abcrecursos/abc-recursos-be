@@ -1,4 +1,4 @@
 export interface GeoLocation {
-  coordinates: [number];
+  coordinates: [number] | [number, number];
   type?: string;
 }

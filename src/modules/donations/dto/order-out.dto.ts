@@ -16,10 +16,11 @@ export class OrderOutDto {
 			this.healthCenterId = healthCenter;
 		} else {
 			this.healthCenterId = healthCenter.id;
-			
+
 			this.location = {
-				latitude: healthCenter.address.geoLocation.coordinates[0],
-				longitude: healthCenter.address.geoLocation.coordinates[1]
+				longitude: healthCenter.address.geoLocation.coordinates[0],
+				latitude: healthCenter.address.geoLocation.coordinates[1]
+
 			}
 		}
 	}

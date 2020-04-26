@@ -11,5 +11,6 @@ export default () => ({
   },
   externalApis: {
     gobArGeoRef: process.env.API_GOB_AR_GEOREF_URL,
+    arcGis:process.env.API_ARCGIS,
   },
 });

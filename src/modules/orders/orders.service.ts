@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Order } from './interfaces/Order';
+import  { HealthCenterSuggestionDto } from './../donations/dto/health-center-suggestion.dto';
+
+
 import { Person } from '../people/interfaces/person';
 import { HealthCenter } from '../health-centers';
 
@@ -44,70 +47,123 @@ export class OrdersService {
     return createdOrder.save();
   }
 
-  async getNearSuggestionsBySupply(supplyId: string, longitude: number, latitude: number)
-  : Promise<Order> {
+  async getNearSuggestionsBySupply(supplyId: string, longitude: number, latitude: number): Promise<Order> {
 
-    let geoPoint = {
-      type: 'point',
-      'coordinates': [longitude, latitude]
-    };
+      let geoPoint = {
+        type: 'point',
+        'coordinates': [longitude, latitude]
+      };
 
-    let id = new mongoose.Types.ObjectId(supplyId);
+      let id = new mongoose.Types.ObjectId(supplyId);
 
-    return new Promise(async function(resolve, reject) {
+      return new Promise(async function(resolve, reject) {
 
-      let models = await this
-        .healthCenterModel
-        .aggregate([
-          {
-            '$geoNear': {
-              'near': geoPoint,
-              'distanceField': "dist.calculated",
-              'maxDistance': 100000,
-              'includeLocs': "dist.location",
-              'spherical': true
-            }
-          },
-          {
-            '$lookup': {
-              'from': "orders",
-              'let': { 'health_id': "$_id" },
-              'pipeline': [
-                {'$match': {"state":"Pending","items": {'$elemMatch': {"supply_id": id}}}},
-                {'$match': { '$expr': { '$eq': [ "$healthCenter_id",  "$$health_id" ] }}}
-              ],
-              'as': "order"
-            }
-          },
-          {
-            "$match": {
-              "order.0": {
-                "$exists": true
+        let models = await this
+          .healthCenterModel
+          .aggregate([
+            {
+              '$geoNear': {
+                'near': geoPoint,
+                'distanceField': "dist.calculated",
+                'maxDistance': 100000,
+                'includeLocs': "dist.location",
+                'spherical': true
+              }
+            },
+            {
+              '$lookup': {
+                'from': "orders",
+                'let': { 'health_id': "$_id" },
+                'pipeline': [
+                  {'$match': {"state":"Pending","items": {'$elemMatch': {"supply_id": id}}}},
+                  {'$match': { '$expr': { '$eq': [ "$healthCenter_id",  "$$health_id" ] }}}
+                ],
+                'as': "order"
+              }
+            },
+            {
+              "$match": {
+                "order.0": {
+                  "$exists": true
+                }
               }
             }
-          }
-        ])
-        .exec();
+          ])
+          .exec();
 
-        let ordersId =         
-          models
-          .map(function(current) {
-            return current.order;
-          })
-          .reduce(function(acumulator, currentArray) {
-            return acumulator.concat(currentArray);
-          },
-          [])
-          .map(currentOrder => currentOrder._id);
+          let ordersId =
+            models
+            .map(function(current) {
+              return current.order;
+            })
+            .reduce(function(acumulator, currentArray) {
+              return acumulator.concat(currentArray);
+            },
+            [])
+            .map(currentOrder => currentOrder._id);
 
-        console.log(ordersId);
-        resolve(await this.orderModel.find({'_id': {'$in': ordersId}}).populate('healthCenter_id').exec());
+          console.log(ordersId);
+          resolve(await this.orderModel.find({'_id': {'$in': ordersId}}).populate('healthCenter_id').exec());
 
-    }.bind(this));
-  }
+      }.bind(this));}
+
+
+
+
+  async getNearSuggestionsBySupplyPrueba(supplyId: string, longitude: number, latitude: number): Promise<HealthCenterSuggestionDto[]> {
+
+        let geoPoint = {
+          type: 'point',
+          'coordinates': [longitude, latitude]
+        };
+
+        let id = new mongoose.Types.ObjectId(supplyId);
+
+        return  this.healthCenterModel
+            .aggregate([
+              {
+                '$geoNear': {
+                  'near': geoPoint,
+                  'distanceField': "dist.calculated",
+                  'maxDistance': 100000,
+                  'includeLocs': "dist.location",
+                  'spherical': true
+                }
+              },
+              {
+                '$lookup': {
+                  'from': "orders",
+                  'let': { 'health_id': "$_id" },
+                  'pipeline': [
+                    {'$match': {"state":"Pending","items": {'$elemMatch': {"supply_id": id}}}},
+                    {'$match': { '$expr': { '$eq': [ "$healthCenter_id",  "$$health_id" ] }}}
+                  ],
+                  'as': "order"
+                }
+              },
+              {
+                "$match": {
+                  "order.0": {
+                    "$exists": true
+                  }
+                }
+              }
+            ])
+            .exec();
+
+      }
+
+
+
+
 
   async exists(orderId: string): Promise<boolean> {
 
     return await this.findById(orderId) != null;
   }
+
+
+
+
+
 }

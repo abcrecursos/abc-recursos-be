@@ -1,6 +1,7 @@
 import { Order } from '../../orders';
 import { HealthCenter } from '../../health-centers';
 
+
 export class OrderOutDto {
 
 	readonly healthCenterId: string;
@@ -9,6 +10,8 @@ export class OrderOutDto {
 		longitude: number
 	}
 	a;
+
+
 
 	constructor(order: Order, healthCenter: HealthCenter | string) {
 

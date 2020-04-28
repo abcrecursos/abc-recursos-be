@@ -8,6 +8,8 @@ import { TrackingOutDto, OrdersSuggestionsDto, DonationOutDto, OrderOutDto } fro
 import { Tracking, Donation } from './interfaces';
 import { Order } from '../orders';
 import { HealthCenter } from '../health-centers';
+import { HealthCenterSuggestionDto } from './dto/health-center-suggestion.dto';
+
 
 @Controller('donations')
 export class DonationsController {
@@ -33,7 +35,7 @@ export class DonationsController {
       } else {
         return new TrackingOutDto(current, donation.toString());
       }
-      
+
     });
   }
 
@@ -69,8 +71,9 @@ export class DonationsController {
       //Get Order
       let models = await this.ordersService.getNearSuggestionsBySupply(
         ordersSuggestionsDto.supplyId,
+        ordersSuggestionsDto.longitude,
         ordersSuggestionsDto.latitude,
-        ordersSuggestionsDto.longitude
+
       );
 
       //Map to OrderOutDto[] with duplicates
@@ -98,4 +101,26 @@ export class DonationsController {
 
     }.bind(this));
   }
+
+
+//  @Post('/suggestionsprueba')
+//  async getOrdersSuggestionsBySupplyPrueba(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)
+//  : Promise<HealthCenterSuggestionDto[]> {
+
+//    return await this.ordersService.getNearSuggestionsBySupplyPrueba(
+//      ordersSuggestionsDto.supplyId,
+//      ordersSuggestionsDto.longitude,
+//      ordersSuggestionsDto.latitude);
+
+//  }
+
+
+  @Post('/suggestionsprueba')
+  async getOrdersSuggestionsBySupplyPrueba(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)  : Promise<HealthCenterSuggestionDto[]> {
+    return this.ordersService.getNearSuggestionsBySupplyPrueba(ordersSuggestionsDto.supplyId,
+          ordersSuggestionsDto.longitude,
+          ordersSuggestionsDto.latitude);
+  }
+
+
 }

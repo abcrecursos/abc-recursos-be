@@ -1,5 +1,5 @@
 import { Schema, Document } from 'mongoose';
-//import { Order } from '../../orders/interfaces/Order';
+import { Order } from '../../orders/interfaces/Order';
 import { HealthCenter } from '../../health-centers';
 import { Address } from '../../locations/interfaces/address.interface';
 
@@ -8,6 +8,13 @@ export interface HealthCenterSuggestion extends Document {
   readonly name: string;
   readonly category: string;
   readonly address: Address;
-  readonly dist: {calculated: number, location:[number, number] } ;
-//  readonly order:  Order[];
+  readonly dist: Dist;
+  readonly order:  Order[];
+
+
 }
+
+export interface Dist extends Document {
+calculated: number;
+location: number[];
+  }

@@ -62,65 +62,22 @@ export class DonationsController {
     return new TrackingOutDto(trackingModel, donationModel);
   }
 
+
+
+
   @Post('/suggestions')
-  async getOrdersSuggestionsBySupply(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)
-  : Promise<OrderOutDto> {
-
-    return new Promise(async function(resolve, reject) {
-
-      //Get Order
-      let models = await this.ordersService.getNearSuggestionsBySupply(
-        ordersSuggestionsDto.supplyId,
-        ordersSuggestionsDto.longitude,
-        ordersSuggestionsDto.latitude,
-
-      );
-
-      //Map to OrderOutDto[] with duplicates
-      let retWithDuplicates: OrderOutDto[] =
-        models
-        .map(function(current: Order): OrderOutDto {
-
-          if (current.healthCenter as HealthCenter) {
-            return new OrderOutDto(current, current.healthCenter as HealthCenter);
-          } else {
-            return new OrderOutDto(current, current.healthCenter.toString());
-          }
-        });
-
-      //remove duplicates
-      let retWithoutDuplicates: OrderOutDto[] = [];
-      retWithDuplicates.forEach(function(current) {
-
-        if (retWithoutDuplicates.findIndex(copy => copy.equals(current)) == -1) {
-          retWithoutDuplicates.push(current);
-        }
-      });
-
-      resolve(retWithoutDuplicates);
-
-    }.bind(this));
-  }
-
-
-//  @Post('/suggestionsprueba')
-//  async getOrdersSuggestionsBySupplyPrueba(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)
-//  : Promise<HealthCenterSuggestionDto[]> {
-
-//    return await this.ordersService.getNearSuggestionsBySupplyPrueba(
-//      ordersSuggestionsDto.supplyId,
-//      ordersSuggestionsDto.longitude,
-//      ordersSuggestionsDto.latitude);
-
-//  }
-
-
-  @Post('/suggestionsprueba')
-  async getOrdersSuggestionsBySupplyPrueba(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)  : Promise<HealthCenterSuggestionDto[]> {
-    return this.ordersService.getNearSuggestionsBySupplyPrueba(ordersSuggestionsDto.supplyId,
+  async getOrdersSuggestionsBySupply(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)  : Promise<HealthCenterSuggestionDto> {
+    return this.ordersService.getNearSuggestionsBySupply(ordersSuggestionsDto.supplyId,
           ordersSuggestionsDto.longitude,
           ordersSuggestionsDto.latitude);
   }
+
+  //@Post('/suggestions')
+  //async getOrdersSuggestionsBySupply(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)  : Promise<HealthCenterSuggestionDto[]> {
+  //  return this.ordersService.getNearSuggestionsBySupply(ordersSuggestionsDto.supplyId,
+  //        ordersSuggestionsDto.longitude,
+  //        ordersSuggestionsDto.latitude);
+  //}
 
 
 }

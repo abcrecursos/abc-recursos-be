@@ -12,6 +12,12 @@ export class ProducersController {
     return this.ProducerSvc.findAll();
   }
 
+  @Get('/summary')
+  async findAllSummary() {
+    return this.ProducerSvc.findAllSummary();
+  }
+
+
   @Post()
   async createProducer(@Body() createP: CreateProducerDto) {
     return this.ProducerSvc.create(createP);

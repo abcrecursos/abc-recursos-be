@@ -11,7 +11,6 @@ export interface HealthCenterSuggestion extends Document {
   readonly dist: Dist;
   readonly order:  Order[];
 
-
 }
 
 export interface Dist extends Document {

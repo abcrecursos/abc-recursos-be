@@ -8,6 +8,7 @@ import { CreateProducerDto } from './dto/createProducer.dto';
 import { ProducerCategory } from './interfaces/producerCategory';
 import { CreateProducerCategoryDto } from './dto/createProducerCategory.dto';
 import { GetProducerCategoriesDto } from './dto/getProducersCategories.dto';
+import { GetProducersSummaryDto } from './dto/getProducersSummary.dto';
 import { GetProducerDto } from './dto/getProducers.dto';
 
 @Injectable()
@@ -28,6 +29,22 @@ export class ProducersService {
   async findAllCategories(): Promise<GetProducerCategoriesDto[]> {
     return this.ProducerCategory.find({}).exec();
   }
+
+
+  async findAllSummary(): Promise<GetProducersSummaryDto[]> {
+    return this.Producer.aggregate([
+
+    {'$project': {'nombre':'$name',
+                  'insumos':{ '$reduce':{'input':'$supply.name','initialValue': "",
+       'in': { '$concat' : ['$$value',
+
+                            { '$cond': { 'if': { '$eq': [ "$$value", "" ] }, 'then': " ", 'else': ", " }},
+
+                            '$$this'] }}},
+                  'ciudad':{'$concat': ['$address.localidad', ', ', '$address.province']}}}
+]).exec();
+  }
+
 
   async create(createProducerDto: CreateProducerDto): Promise<Producer> {
 

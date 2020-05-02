@@ -13,6 +13,7 @@ export class HealthCenterSuggestionDto {
 	readonly address: Address;
 
 
+
 	readonly dist: Dist;
 	readonly order: any;
 
@@ -24,7 +25,8 @@ export class HealthCenterSuggestionDto {
 		this.name = healthcentersuggestion.name;
 		this.category = healthcentersuggestion.category;
 		this.address = healthcentersuggestion.address;
-		
+
+
 
 		this.dist = healthcentersuggestion.dist;
 		this.order=healthcentersuggestion.order;

@@ -1,18 +1,16 @@
+import * as mongoose from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Donation } from './interfaces/Donation';
 import { Model } from 'mongoose';
 import { CreateDonationDto } from './dto/create-donation.dto';
-import * as mongoose from 'mongoose';
-//import { Tracking } from './interfaces/Tracking';
+
+import { OrdersService } from '../orders/orders.service';
+import { Order } from '../orders/interfaces/Order';
 
 @Injectable()
 export class DonationsService {
   constructor(@InjectModel('Donation') private donationModel: Model<Donation>) {}
-
-  private generateTrackingID(): string {
-    return "";
-  };
 
   async findAll(): Promise<Donation[]> {
     return this.donationModel.find().exec();
@@ -34,4 +32,16 @@ export class DonationsService {
     createdDonation = await this.findById(createdDonation.id);
     return createdDonation
   }
+
+  async findNearbyOrdersForSupply(
+    supplyId: string,
+    latitude: string,
+    longitude: string
+    ): Promise<Order[]> {
+
+    return null;
+  }
+
+
+
 }

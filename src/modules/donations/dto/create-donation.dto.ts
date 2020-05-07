@@ -5,14 +5,15 @@ import { DonationsValidationConstants } from '../../../constants/validation/dona
 
 import { OrderExists } from '../../orders';
 import { PeopleExists } from '../../people';
+import { CreatePersonDto } from '../../people';
 
 export class CreateDonationDto {
 
 	@Validate(OrderExists)
-  readonly order_id: String;
+  readonly orderId: string;
 
-  @Validate(PeopleExists)
-  readonly person_id: String;
+  @ValidateNested()
+  readonly person: CreatePersonDto;
 
   //https://stackoverflow.com/questions/58343262/class-validator-validate-array-of-objects
   @ArrayMinSize(1, { message: DonationsValidationConstants.AtLeastOneSupply })

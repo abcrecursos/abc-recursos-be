@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Donation } from './interfaces/Donation';
+import { Donation } from './interfaces';
 import { Model } from 'mongoose';
 import { CreateDonationDto } from './dto/create-donation.dto';
 
@@ -24,24 +24,26 @@ export class DonationsService {
     return this.donationModel.find({'insumos.supply_id': new mongoose.Types.ObjectId(supplyId)}).exec();
   }
 
-  async create(createDonationDto: CreateDonationDto): Promise<Donation> {
+  async create(
+    orderId: string,
+    personId: string,
+    items: {supplyId: string, quantity: number}[]
+   ): Promise<Donation> {
 
-    let createdDonation = new this.donationModel(createDonationDto);
+    let createdDonation = new this.donationModel({
+      order: orderId,
+      person: personId,
+      items: items.map(function(current) {
+
+        return {
+          supply_id: current.supplyId,
+          quantity: current.quantity
+        };
+      })
+    });
     createdDonation = await createdDonation.save();
 
     createdDonation = await this.findById(createdDonation.id);
     return createdDonation
   }
-
-  async findNearbyOrdersForSupply(
-    supplyId: string,
-    latitude: string,
-    longitude: string
-    ): Promise<Order[]> {
-
-    return null;
-  }
-
-
-
 }

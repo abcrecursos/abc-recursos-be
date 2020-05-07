@@ -8,7 +8,7 @@ export class DonationItemDto {
 	Supply ID donated.
 	*/
   @Validate(SupplyExists)
-  readonly supply_id: string;
+  readonly supplyId: string;
 
   /**
   Quantity donated.

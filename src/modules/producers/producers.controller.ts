@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Res, Param, NotFoundException, HttpStatus } from '@nestjs/common';
 import { ProducersService } from './producers.service';
 import { CreateProducerCategoryDto } from './dto/createProducerCategory.dto';
 import { CreateProducerDto } from './dto/createProducer.dto';
@@ -22,6 +22,19 @@ export class ProducersController {
   async createProducer(@Body() createP: CreateProducerDto) {
     return this.ProducerSvc.create(createP);
   }
+
+
+  @Put('/update/:producerID')
+  async updateProducer(@Res() res, @Body() createProducerDto: CreateProducerDto, @Param('producerID') producerID: string) {
+    const updatedProducer= await this.ProducerSvc.updateProducer(producerID,createProducerDto);
+    if (!updatedProducer) throw new NotFoundException("Producer does not exist");
+    return res.status(HttpStatus.OK).json({message:'Producer Updated Successfully',
+    updatedProducer
+
+  });
+
+  }
+
 
   @Get('/categories')
   async findAllCategories() {

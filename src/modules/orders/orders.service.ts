@@ -1,15 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import * as mongoose from 'mongoose';
+import { Model } from 'mongoose';
+
+import { TrackingNumberGeneratorService } from '../common';
+
 import { Order } from './interfaces/Order';
-//import  { HealthCenterSuggestionDto } from './../donations/dto/health-center-suggestion.dto';
 import  { HealthCenterSuggestion } from './../orders/interfaces/HealthCenterSuggestion';
 
 import { Person } from '../people/interfaces/person';
 import { HealthCenter } from '../health-centers';
+import { Tracking, TrackingStep } from './interfaces';
 
-import { Model } from 'mongoose';
 import { CreateOrderDto } from './dto/create-order.dto';
-import * as mongoose from 'mongoose';
+
+import { OrderStates } from '../../constants/orderStates';
+import { PeopleService } from '../people';
 
 
 
@@ -18,8 +24,9 @@ export class OrdersService {
 
   constructor(
     @InjectModel('Order') private orderModel: Model<Order>,
-    @InjectModel('Person') private personModel: Model<Person>,
-    @InjectModel('HealthCenter') private healthCenterModel: Model<HealthCenter>
+    @InjectModel('HealthCenter') private healthCenterModel: Model<HealthCenter>,
+    private peopleService: PeopleService,
+    private trackingNumberGenerator: TrackingNumberGeneratorService
 ) {}
 
   async findById(id: string): Promise<Order> {
@@ -32,23 +39,39 @@ export class OrdersService {
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
 
-    const createdPerson = new this.personModel(createOrderDto.person);
-    const result = await createdPerson.save()
+
+    const objectId = new mongoose.Types.ObjectId();
+    const createdPerson = await this.peopleService.create(createOrderDto.person);
+    const trackingNumber = this
+                            .trackingNumberGenerator
+                            .generateFromObjectId(objectId.toHexString());
+
+    const items = createOrderDto.items.map(function(current) {
+      return {
+        supply: current.supplyId,
+        quantity: current.quantity
+      }
+    });
 
     const createdOrder = new this.orderModel({
-      person_id: result.id,
+      _id: objectId,
+      person_id: createdPerson.id,
       observations: createOrderDto.observations,
       priority: createOrderDto.priority,
-      state: createOrderDto.state,
-      healthCenter_id: createOrderDto.healthCenter_id,
-      items: createOrderDto.items
+      state: 'Requested',
+      healthCenter: createOrderDto.healthCenterId,
+      items: items,
+      tracking: {
+        number: trackingNumber,
+        steps: [{description: OrderStates.Requested, order: 1}]
+      }
     });
+
+
 
     return createdOrder.save();
   }
 
-
-//  async getNearSuggestionsBySupply(supplyId: string, longitude: number, latitude: number): Promise<HealthCenterSuggestionDto> {
 
   async getNearSuggestionsBySupply(supplyId: string, longitude: number, latitude: number): Promise<HealthCenterSuggestion> {
 
@@ -90,20 +113,10 @@ export class OrdersService {
               }
             ])
             .exec();
-
       }
-
-
-
-
 
   async exists(orderId: string): Promise<boolean> {
 
     return await this.findById(orderId) != null;
   }
-
-
-
-
-
 }

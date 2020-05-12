@@ -7,6 +7,7 @@ import { ProducersModule } from './modules/producers/producers.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { OrdersModule } from './modules/orders/orders.module';
 import { DonationsModule } from './modules/donations/donations.module';
+import { CommonModule } from './modules/common/common.module';
 
 
 import { AuthModule } from './modules/auth/auth.module';
@@ -46,7 +47,8 @@ import configuration from '../config/configuration';
     HealthCentersModule,
     OrdersModule,
     ProducersModule,
-    AuthModule
+    AuthModule,
+    CommonModule
     ],
 })
 export class AppModule {}

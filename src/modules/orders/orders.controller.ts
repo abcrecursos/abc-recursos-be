@@ -14,7 +14,6 @@ export class OrdersController {
 
   @Post()
   async createOrder(@Body() createO: CreateOrderDto) {
-    return this.OrderSvc.create(createO);
+    return await this.OrderSvc.create(createO);
   }
-
-  }
+}

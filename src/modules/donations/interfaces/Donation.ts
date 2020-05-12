@@ -1,5 +1,6 @@
 import { Schema, Document } from 'mongoose';
 import { DonationItem } from './DonationItem';
+import { Tracking } from './';
 
 /**
 Represents a donation of a person to an
@@ -26,4 +27,9 @@ export interface Donation extends Document {
   Donated items.
   */
   readonly items: DonationItem[];
+
+  /**
+  Tracking information.
+  */
+  readonly tracking: Tracking;
 }

@@ -8,12 +8,15 @@ import { OrderExists } from './validation';
 import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 import { PeopleService } from '../people/people.service';
+import { CommonModule } from '../common';
 
 @Module({
-  imports: [MongooseModule.forFeature([
-  	{ name: 'Order', schema: OrderSchema },
-  	{ name: 'Person', schema: PersonSchema },
-  	{ name: 'HealthCenter', schema: HealthCenterSchema }
+  imports: [
+    CommonModule,
+    MongooseModule.forFeature([
+    	{ name: 'Order', schema: OrderSchema },
+    	{ name: 'Person', schema: PersonSchema },
+    	{ name: 'HealthCenter', schema: HealthCenterSchema }
   	])],
   controllers: [OrdersController],
   providers: [OrdersService, PeopleService, OrderExists],

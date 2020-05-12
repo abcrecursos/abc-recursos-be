@@ -4,7 +4,6 @@ import { Type } from 'class-transformer';
 import { PhoneDto } from "../../phones";
 import { AddressDto } from '../../locations';
 
-
 export class CreatePersonDto {
 
   //TODO colocar mensaje de error como constante para cada propiedad

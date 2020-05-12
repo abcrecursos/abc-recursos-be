@@ -12,6 +12,12 @@ const DonationSchema = new mongoose.Schema(
     order_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Order',
+      alias: 'order'
+    },
+    person_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Person',
+      alias: 'person'
     },
     items: [
       {

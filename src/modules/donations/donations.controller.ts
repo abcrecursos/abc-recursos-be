@@ -6,9 +6,8 @@ import { CreateDonationDto } from './dto/create-donation.dto';
 
 import { TrackingOutDto, OrdersSuggestionsDto, DonationOutDto, OrderOutDto } from './dto';
 import { Tracking, Donation } from './interfaces';
-import { Order } from '../orders';
-import { HealthCenter } from '../health-centers';
 import { HealthCenterSuggestionDto } from './dto/health-center-suggestion.dto';
+import { PeopleService } from '../people';
 
 
 @Controller('donations')
@@ -17,7 +16,8 @@ export class DonationsController {
   constructor(
     private donationsService: DonationsService,
     private trackingService: TrackingService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private peopleService: PeopleService
    ) {}
 
   @Get()
@@ -50,34 +50,37 @@ export class DonationsController {
     return this.donationsService.findAllBySupplyId(supplyId);
   }
 
-  //TODO determinar un modelo a retornar. Este debe ser el mismo que getAll y getById.
   @Post()
   async create(@Body() createDonationDto: CreateDonationDto): Promise<TrackingOutDto> {
 
     //TODO ¿envíar correo cuando se haya creado la donación?
     //TODO si ocurre un error al generar el tracking, eliminar la donacion
-    let donationModel = await this.donationsService.create(createDonationDto);
+
+    const personId = (await this.peopleService.create(createDonationDto.person))._id;
+
+    const items = createDonationDto
+                  .items
+                  .map(function(current) {
+                    return {supplyId: current.supplyId, quantity: current.quantity} ;
+                  });
+
+    let donationModel = await this.donationsService.create(
+        createDonationDto.orderId,
+        personId,
+        items
+      );
+
     let trackingModel = await this.trackingService.create(donationModel);
 
     return new TrackingOutDto(trackingModel, donationModel);
   }
 
-
-
-
   @Post('/suggestions')
-  async getOrdersSuggestionsBySupply(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)  : Promise<HealthCenterSuggestionDto> {
-    return this.ordersService.getNearSuggestionsBySupply(ordersSuggestionsDto.supplyId,
-          ordersSuggestionsDto.longitude,
-          ordersSuggestionsDto.latitude);
+  async getOrdersSuggestionsBySupply(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)
+  : Promise<HealthCenterSuggestionDto> {
+    return this.ordersService.getNearSuggestionsBySupply(
+      ordersSuggestionsDto.supplyId,
+      ordersSuggestionsDto.longitude,
+      ordersSuggestionsDto.latitude);
   }
-
-  //@Post('/suggestions')
-  //async getOrdersSuggestionsBySupply(@Body() ordersSuggestionsDto: OrdersSuggestionsDto)  : Promise<HealthCenterSuggestionDto[]> {
-  //  return this.ordersService.getNearSuggestionsBySupply(ordersSuggestionsDto.supplyId,
-  //        ordersSuggestionsDto.longitude,
-  //        ordersSuggestionsDto.latitude);
-  //}
-
-
 }

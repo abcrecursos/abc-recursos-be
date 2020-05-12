@@ -27,8 +27,14 @@ export class LocationsController {
 
   @Get('address/:address')
   geocodeAddress(@Param('address') address: string) {
+
+    address = address
+            .replace("á", "a")
+            .replace("é", "e")
+            .replace("í", "i")
+            .replace("ó", "o")
+            .replace("ú", "u")
+
     return this.locationsSvc.geocodeAddress(address);
   }
-
-
 }

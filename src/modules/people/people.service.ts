@@ -20,7 +20,37 @@ export class PeopleService {
   async create(
     createPersonDto: CreatePersonDto,
   ): Promise<Person> {
-    const createdPerson = new this.personModel(createPersonDto);
+
+    const address = {
+      street: createPersonDto.address.street,
+      number: createPersonDto.address.number,
+      postalCode: createPersonDto.address.postalCode,
+      localidad: createPersonDto.address.localidad,
+      departamento: createPersonDto.address.departamento,
+      province: createPersonDto.address.province,
+      geoLocation: {
+        type: 'point',
+        coordinates: [
+          createPersonDto.address.longitude,
+          createPersonDto.address.latitude
+        ]
+      }
+    };
+
+    const phone = {
+      type: createPersonDto.phone.type,
+      prefix: createPersonDto.phone.prefix,
+      number: createPersonDto.phone.number
+    };
+
+    const createdPerson = new this.personModel({
+      name : createPersonDto.name,
+      lastname: createPersonDto.lastname,
+      email: createPersonDto.email,
+      address: address,
+      phone: phone
+    });
+
     return createdPerson.save();
   }
 

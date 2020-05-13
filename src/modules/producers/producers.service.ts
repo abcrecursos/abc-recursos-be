@@ -68,4 +68,11 @@ export class ProducersService {
     const createdHCCategory = new this.ProducerCategory(createProducerCategoryDto);
     return createdHCCategory;
   }
+
+
+  async updateProducer(producerID: string, createProducerDto: CreateProducerDto): Promise<Producer> {
+    const updatedProducer = this.Producer.findByIdAndUpdate(producerID, createProducerDto,{new:true});
+    return updatedProducer;
+
+  }
 }

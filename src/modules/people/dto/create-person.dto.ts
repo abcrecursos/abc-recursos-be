@@ -1,20 +1,20 @@
 import { ValidateNested, MinLength, IsEmail } from 'class-validator';
 import { Type } from 'class-transformer';
 
-import { PhoneDto } from "../../phones";
-import { AddressDto } from '../../locations';
+import { PhoneDto } from "./";
+import { AddressDto } from './';
+
+import { PeopleValidationConstants } from '../../../constants/validation';
 
 export class CreatePersonDto {
 
-  //TODO colocar mensaje de error como constante para cada propiedad
-
-  @MinLength(2)
+  @MinLength(2, { message: PeopleValidationConstants.NameMinLength })
 	readonly name: string;
 
-  @MinLength(2)
+  @MinLength(2, { message: PeopleValidationConstants.LastnameMinLength })
 	readonly lastname: string;
 
-  @IsEmail()
+  @IsEmail({}, { message: PeopleValidationConstants.ValidEmail })
 	readonly email: string;
 
   @ValidateNested()

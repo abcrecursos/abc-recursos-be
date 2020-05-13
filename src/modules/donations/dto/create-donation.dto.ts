@@ -4,8 +4,7 @@ import { Type } from 'class-transformer';
 import { DonationsValidationConstants } from '../../../constants/validation/donation-validation-constants';
 
 import { OrderExists } from '../../orders';
-import { PeopleExists } from '../../people';
-import { CreatePersonDto } from '../../people';
+import { PeopleExists, CreatePersonDto } from '../../people';
 
 export class CreateDonationDto {
 

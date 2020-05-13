@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+
 import { Person } from './interfaces/person';
 import { CreatePersonDto } from './dto/create-person.dto';
+import { PhoneTypes } from '../../constants';
 
 
 @Injectable()
@@ -24,7 +26,7 @@ export class PeopleService {
       location: data.address.location,
       province: data.address.province,
       geoLocation: {
-        coordinates: [data.address.geoLocation.longitude, data.address.geoLocation.latitude],
+        coordinates: [data.address.longitude, data.address.latitude],
         type: 'point'
       }
     };

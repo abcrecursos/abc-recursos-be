@@ -1,5 +1,5 @@
 import { Donation } from '../interfaces/Donation';
-import { DonationItemOutDto } from './';
+import { DonationItemOutDto, TrackingOutDto } from './';
 
 export class DonationOutDto {
 	id: String;
@@ -7,6 +7,7 @@ export class DonationOutDto {
 	order: any;
 	person: any;
 	items: DonationItemOutDto[];
+	tracking: TrackingOutDto;
 
 	constructor(donation: Donation) {
 		this.id = donation.id;
@@ -15,5 +16,6 @@ export class DonationOutDto {
 		this.person = donation.person;
 
 		this.items = donation.items.map(current => new DonationItemOutDto(current));
+		this.tracking = new TrackingOutDto(donation.tracking);
 	}
 }

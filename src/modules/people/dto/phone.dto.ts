@@ -1,12 +1,12 @@
-import { IsIn, MinLength } from 'class-validator';
+import { IsEnum, MinLength, IsIn } from 'class-validator';
 import { PhoneTypes } from '../../../constants';
 import { PhoneValidationConstants } from '../../../constants/validation';
 
 
 export class PhoneDto {
 
-  @IsIn([PhoneTypes.Cellphone, PhoneTypes.Phone], { message: PhoneValidationConstants.TypeInAllowedValues })
-  type: string;
+  @IsIn(Object.keys(PhoneTypes), { message: PhoneValidationConstants.TypeInAllowedValues })
+  type: PhoneTypes;
 
   @MinLength(2, { message: PhoneValidationConstants.PefixMinLength })
   prefix: string;

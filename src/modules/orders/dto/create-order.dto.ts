@@ -9,7 +9,6 @@ import { OrderItemDto } from  "./order-item.dto";
 export class CreateOrderDto {
 
   //TODO colocar mensajes de error en constantes y agregarlos para retornar.
-  //TODO colocar validacion para 'state'
 
   @ValidateNested()
   @Type(() => CreatePersonDto)

@@ -6,6 +6,7 @@ import * as mongoose from 'mongoose';
 import { Tracking, Donation } from './interfaces';
 import { TrackingStep } from './interfaces/TrackingStep';
 import { DonationStates } from '../../constants/donationStates';
+import { TrackingNumberGeneratorService } from '../common';
 
 class TrackingStepDto {
   readonly description: String;
@@ -33,7 +34,8 @@ class TrackingDto {
 export class TrackingService {
   constructor(
     @InjectModel('Tracking') private trackingModel: Model<Tracking>,
-    @InjectModel('TrackingStep') private trackingStepModel: Model<TrackingStep>
+    @InjectModel('TrackingStep') private trackingStepModel: Model<TrackingStep>,
+    private trackingNumberGenerator: TrackingNumberGeneratorService
   ) {}
 
   /**
@@ -45,6 +47,10 @@ export class TrackingService {
   */
   private generateTrackingNumber(referenceId: string): string {
 
+    return this
+            .trackingNumberGenerator
+            .generateFromObjectId(referenceId);
+    /*
     let today: Date = new Date();
 
     //YYYYMMDD
@@ -60,6 +66,7 @@ export class TrackingService {
     }
 
     return ret;
+    */
   };
 
 

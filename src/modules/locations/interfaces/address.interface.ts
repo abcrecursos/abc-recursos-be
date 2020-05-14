@@ -4,7 +4,7 @@ export interface Address {
   street: string;
   number: string;
   postalCode: string;
-  city: string;
+  location: string;
   province: string;
   geoLocation: GeoLocation;
 }

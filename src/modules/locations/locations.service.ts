@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 export class LocationsService {
   geoRefApi: string;
   geoRefArcGisApi: string;
+
   constructor(private http: HttpService, private configSrv: ConfigService) {
     this.geoRefApi = this.configSrv.get<string>('externalApis.gobArGeoRef');
     this.geoRefArcGisApi = this.configSrv.get<string>('externalApis.arcGis');
@@ -55,24 +56,17 @@ export class LocationsService {
       //.subscribe(resolve, reject);
     //}.bind(this));
 
-async geocodeAddress(address: string) {
-//address debe pasar un string con el formato:  calle numero, partido, provincia
-// por ejemplo: Azcuenaga 1240, Vicente Lopez, Buenos Aires
-// Devuelve las coordenadas 
+  async geocodeAddress(address: string) {
+  //address debe pasar un string con el formato:  calle numero, partido, provincia
+  // por ejemplo: Azcuenaga 1240, Vicente Lopez, Buenos Aires
+  // Devuelve las coordenadas 
 
-console.log(address);
-const request=`${this.geoRefArcGisApi}findAddressCandidates?SingleLine=${address}&category=&outFields=*&countryCode=ARG&forStorage=false&f=pjson`;
-console.log(request);
+    const request=`${this.geoRefArcGisApi}findAddressCandidates?SingleLine=${address}&category=&outFields=*&countryCode=ARG&forStorage=false&f=pjson`;
 
-  const myresponse= await this.http
-    .get(`${this.geoRefArcGisApi}findAddressCandidates?SingleLine=${address}&category=&outFields=*&countryCode=ARG&forStorage=false&f=pjson`,)
-  .pipe(map((response: any) => response.data.candidates[0].location));
+    const myresponse= await this.http
+      .get(`${this.geoRefArcGisApi}findAddressCandidates?SingleLine=${address}&category=&outFields=*&countryCode=ARG&forStorage=false&f=pjson`,)
+      .pipe(map((response: any) => response.data.candidates[0].location));
 
-  return myresponse
-
-        }
-
-
-
-
+    return myresponse
+  }
 }

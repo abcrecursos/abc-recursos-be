@@ -12,8 +12,8 @@ export class AddressDto {
   @Min(1, { message: AddressValidationConstants.PostalCodeMinValue })
   postalCode: number;
 
-  @MinLength(2, { message: AddressValidationConstants.CityMinLength })
-  localidad: string;
+  @MinLength(2, { message: AddressValidationConstants.LocationMinLength })
+  location: string;
 
   @MinLength(2, { message: AddressValidationConstants.ProvinceMinLength })
   province: string;
@@ -21,7 +21,7 @@ export class AddressDto {
   @IsOptional()
   departamento: string;
 
-  @IsLatitude({ message: AddressValidationConstants.LatitudMustBeValid })
+  @IsLatitude({ message: AddressValidationConstants.LatitudeMustBeValid })
   latitude: number;
 
   @IsLongitude({ message: AddressValidationConstants.LongitudeMustBeValid })

@@ -7,6 +7,7 @@ const TrackingStepSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    _id: false
   },
 );
 

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+
 import { Person } from './interfaces/person';
-//import { UserExistsException } from './exceptions/user-exists.exception';
 import { CreatePersonDto } from './dto/create-person.dto';
-//import { PersonOutDto } from './dto/person-out.dto';
+import { PhoneTypes } from '../../constants';
 
 
 @Injectable()
@@ -17,40 +17,36 @@ export class PeopleService {
   	return this.personModel.findById(id).exec();
   }
 
-  async create(
-    createPersonDto: CreatePersonDto,
-  ): Promise<Person> {
+  async create(data: CreatePersonDto, userId: string = null): Promise<Person> {
 
     const address = {
-      street: createPersonDto.address.street,
-      number: createPersonDto.address.number,
-      postalCode: createPersonDto.address.postalCode,
-      localidad: createPersonDto.address.localidad,
-      departamento: createPersonDto.address.departamento,
-      province: createPersonDto.address.province,
+      street: data.address.street,
+      number: data.address.number,
+      postalCode: data.address.postalCode,
+      location: data.address.location,
+      province: data.address.province,
       geoLocation: {
-        type: 'point',
-        coordinates: [
-          createPersonDto.address.longitude,
-          createPersonDto.address.latitude
-        ]
+        coordinates: [data.address.longitude, data.address.latitude],
+        type: 'point'
       }
     };
 
     const phone = {
-      type: createPersonDto.phone.type,
-      prefix: createPersonDto.phone.prefix,
-      number: createPersonDto.phone.number
-    };
+      type: data.phone.type,
+      prefix: data.phone.prefix,
+      number: data.phone.number
+    }
+
 
     const createdPerson = new this.personModel({
-      name : createPersonDto.name,
-      lastname: createPersonDto.lastname,
-      email: createPersonDto.email,
+      name: data.name,
+      lastname: data.lastname,
       address: address,
-      phone: phone
+      phone: phone,
+      user_id: userId,
+      email: data.email
     });
-
+    
     return createdPerson.save();
   }
 

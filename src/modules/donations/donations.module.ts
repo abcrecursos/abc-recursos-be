@@ -10,6 +10,7 @@ import { SuppliesModule } from '../supplies/supplies.module';
 import { HealthCentersModule } from '../health-centers/health-centers.module';
 import { OrdersModule } from '../orders/orders.module';
 import { PeopleModule } from '../people/people.module';
+import { CommonModule } from '../common';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { PeopleModule } from '../people/people.module';
   	SuppliesModule,
   	HealthCentersModule,
   	OrdersModule,
-    PeopleModule
+    PeopleModule,
+    CommonModule
   ],
   controllers: [DonationsController],
   providers: [DonationsService, TrackingService],

@@ -9,6 +9,8 @@ export class PeopleController {
 
 	@Post()
 	create(@Body() data: CreatePersonDto) {
+
+    //TODO obtener el ID de usuario si está logueado y pasarlo como parametro al metodo
 		return this.peopleService.create(data);
 	}
 }

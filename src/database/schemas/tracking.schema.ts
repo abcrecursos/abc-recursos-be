@@ -1,20 +1,14 @@
 import * as mongoose from 'mongoose';
+import TrackingStep from './trackingStep.schema';
 
 const TrackingSchema = new mongoose.Schema(
   {
     number: String,
-    donation_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Donation',
-      alias: 'donation'
-    },
-    steps: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "TrackingStep"
-    }]
+    steps: [TrackingStep]
   },
   {
     timestamps: true,
+    _id: false
   },
 );
 

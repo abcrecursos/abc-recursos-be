@@ -8,8 +8,7 @@ export class OrderOutDto {
 	readonly location: {
 		latitude: number,
 		longitude: number
-	}
-	a;
+	};
 
 
 

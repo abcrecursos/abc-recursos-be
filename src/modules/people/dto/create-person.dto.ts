@@ -1,13 +1,10 @@
-//import { UserValidationConstants } from '../../../constants/validation/user-validation-constants';
-import { Address } from "../../locations/interfaces/address.interface";
-import { Phone } from "../../phones/interfaces/phone.interface";
-import { MinLength, IsEmail, ValidateNested, IsOptional } from 'class-validator';
+import { ValidateNested, MinLength, IsEmail } from 'class-validator';
 import { Type } from 'class-transformer';
-import { PeopleValidationConstants }
-from '../../../constants/validation/people-validation-constants';
 
-import { AddressDto, PhoneDto } from './';
+import { PhoneDto } from "./";
+import { AddressDto } from './';
 
+import { PeopleValidationConstants } from '../../../constants/validation';
 
 export class CreatePersonDto {
 
@@ -27,7 +24,4 @@ export class CreatePersonDto {
   @ValidateNested()
   @Type(() => PhoneDto)
 	readonly phone: PhoneDto;
-
-  @IsOptional()
-	readonly user_id?: string;
 }

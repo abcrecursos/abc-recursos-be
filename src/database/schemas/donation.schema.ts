@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import { DonationStates } from 'src/constants/donationStates';
+import TrackingSchema from './tracking.schema';
 
 const DonationSchema = new mongoose.Schema(
   {
@@ -24,6 +25,7 @@ const DonationSchema = new mongoose.Schema(
         quantity: { type: Number },
       },
     ],
+    tracking: TrackingSchema
   },
   {
     timestamps: true,

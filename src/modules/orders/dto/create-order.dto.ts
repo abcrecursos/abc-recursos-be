@@ -1,18 +1,30 @@
-import { Person } from "../../people/interfaces/person";
+import { ValidateNested, Validate, IsOptional, Min, ArrayMinSize } from 'class-validator';
+import { Type } from 'class-transformer';
 
+import { CreatePersonDto } from "../../people";
+import { HealthCenterExists } from '../../health-centers';
 import { OrderItemDto } from  "./order-item.dto";
-import { User } from  "../../users/interfaces/user";
 
 
 export class CreateOrderDto {
-  readonly person: Person;
 
+  //TODO colocar mensajes de error en constantes y agregarlos para retornar.
+
+  @ValidateNested()
+  @Type(() => CreatePersonDto)
+  readonly person: CreatePersonDto;
+
+  @Min(1)
   readonly priority: number;
-  readonly state: string;
-  readonly healthCenter_id: string;
 
+  @Validate(HealthCenterExists)
+  readonly healthCenterId: string;
+
+  @ArrayMinSize(1)
+  @ValidateNested()
+  @Type(() => OrderItemDto)
   readonly items: OrderItemDto[];
+
+  @IsOptional()
   readonly observations: string;
-
-
 }

@@ -9,4 +9,5 @@ export interface Person extends Document {
 	readonly address: Address;
 	readonly phone: Phone;
 	readonly user_id: string;
+  readonly email: string;
 }

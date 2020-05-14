@@ -1,6 +1,5 @@
 import { Schema, Document } from 'mongoose';
-import { DonationItem } from './DonationItem';
-import { Tracking } from './';
+import { DonationItem, Tracking } from './';
 
 /**
 Represents a donation of a person to an

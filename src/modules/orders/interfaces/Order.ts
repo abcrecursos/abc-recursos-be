@@ -1,7 +1,6 @@
 import { Schema, Document } from 'mongoose';
-import { OrderItem } from './OrderItem';
+import { OrderItem, Tracking } from './';
 import { HealthCenter } from '../../health-centers';
-import { Tracking } from './tracking'
 import { Person } from '../../people';
 
 export interface Order extends Document {

@@ -25,10 +25,10 @@ export class PeopleService {
       postalCode: data.address.postalCode,
       location: data.address.location,
       province: data.address.province,
-      geoLocation: {
-        coordinates: [data.address.longitude, data.address.latitude],
-        type: 'point'
-      }
+    //  geoLocation: {
+    //    coordinates: [data.address.longitude, data.address.latitude],
+    //    type: 'point'
+    //  }
     };
 
     const phone = {
@@ -46,7 +46,7 @@ export class PeopleService {
       user_id: userId,
       email: data.email
     });
-    
+
     return createdPerson.save();
   }
 

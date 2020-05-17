@@ -17,6 +17,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderStates } from '../../constants/orderStates';
 import { PeopleService } from '../people';
 
+import {LastThreeOrdersDto} from './dto/last-three-orders-out.dto';
 
 
 @Injectable()
@@ -119,4 +120,38 @@ export class OrdersService {
 
     return await this.findById(orderId) != null;
   }
+
+
+  async findLastThreeOrdersforFrontPage(): Promise<LastThreeOrdersDto[]> {
+    return this.orderModel.aggregate([
+
+    { '$sort': { 'createdAt': -1
+             }},
+    { '$limit': 3 },
+    {'$lookup':
+       {
+         'from': "healthcenters",
+         'localField': "healthCenter_id",
+         'foreignField': "_id",
+         'as': "health_center"
+       }},
+     {'$lookup':
+       {
+         'from': "supplies",
+         'localField': "items.supply_id",
+         'foreignField': "_id",
+         'as': "supplies"
+       }}
+    ,{'$project': {'nombre':   { '$arrayElemAt': [ '$health_center.name', 0 ] } ,'item':{'$arrayElemAt':['$supplies.name',0]},'cantidad':{'$arrayElemAt':['$items.quantity',0]},
+                  'direccion': {'$concat': [{'$arrayElemAt': [ '$health_center.address.street', 0 ]}
+                                           ,', '
+                                           ,{'$arrayElemAt': [ '$health_center.address.city', 0 ]}
+                                            ,', '
+                                      ,{'$arrayElemAt': [ '$health_center.address.province', 0 ]}
+                                           ]}
+                  }}
+
+      ]).exec();
+  }
+
 }

@@ -12,6 +12,11 @@ export class OrdersController {
     return this.OrderSvc.findAll();
   }
 
+  @Get('/lastthreeorders')
+  async findLastThreeOrdersforFrontPage() {
+    return this.OrderSvc.findLastThreeOrdersforFrontPage();
+  }
+
   @Post()
   async createOrder(@Body() createO: CreateOrderDto) {
     return await this.OrderSvc.create(createO);

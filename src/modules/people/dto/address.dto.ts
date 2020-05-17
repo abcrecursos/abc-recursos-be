@@ -21,9 +21,13 @@ export class AddressDto {
   @IsOptional()
   departamento: string;
 
-  @IsLatitude({ message: AddressValidationConstants.LatitudeMustBeValid })
+
+//Cambiar esto cuando incluya georeferenciacion de la persona
+  //@IsLatitude({ message: AddressValidationConstants.LatitudeMustBeValid })
+  @IsOptional()
   latitude: number;
 
-  @IsLongitude({ message: AddressValidationConstants.LongitudeMustBeValid })
+//  @IsLongitude({ message: AddressValidationConstants.LongitudeMustBeValid })
+  @IsOptional()
   longitude: number;
 }

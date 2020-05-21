@@ -30,8 +30,23 @@ export class OrdersService {
     private trackingNumberGenerator: TrackingNumberGeneratorService
 ) {}
 
-  async findById(id: string): Promise<Order> {
-    return this.orderModel.findById(id).exec();
+  async findById(id: mongoose.Schema.Types.ObjectId | string): Promise<Order> {
+
+    let finalId;
+
+    if (typeof id === "string") {
+      try {
+        //A invalid ID means that it was not found
+        finalId = new mongoose.Schema.Types.ObjectId(id);  
+      } catch(e) {
+        return null;
+      }
+      
+    } else {
+      finalId = id;
+    }
+
+    return this.orderModel.findById(finalId).exec();
   }
 
   async findAll(): Promise<Order[]> {
@@ -154,4 +169,13 @@ export class OrdersService {
       ]).exec();
   }
 
+  async findByTrackingNumber(trackingNumber: string): Promise<Order> {
+
+    return this
+          .orderModel
+          .findOne()
+          .where("tracking.number")
+          .equals(trackingNumber)
+          .exec();
+  }
 }

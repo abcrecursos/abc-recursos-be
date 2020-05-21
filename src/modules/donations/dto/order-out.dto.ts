@@ -4,6 +4,7 @@ import { HealthCenter } from '../../health-centers';
 
 export class OrderOutDto {
 
+	readonly priority: number;
 	readonly healthCenterId: string;
 	readonly location: {
 		latitude: number,
@@ -13,6 +14,8 @@ export class OrderOutDto {
 
 
 	constructor(order: Order, healthCenter: HealthCenter | string) {
+
+		this.priority = order.priority;
 
 		if (typeof healthCenter === "string") {
 			this.healthCenterId = healthCenter;

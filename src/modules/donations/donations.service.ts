@@ -84,4 +84,32 @@ export class DonationsService {
     createdDonation = await this.findById(createdDonation.id);
     return createdDonation
   }
+
+  async findByTrackingNumber(trackingNumber: string): Promise<Donation> {
+
+    return this
+          .donationModel
+          .findOne()
+          .where('tracking.number')
+          .equals(trackingNumber)
+          .exec();
+  }
+
+  async findByOrderId(orderId: string): Promise<Donation[]> {
+
+    let finalId: mongoose.Types.ObjectId;
+
+    try {
+      finalId = new mongoose.Types.ObjectId(orderId);  
+    } catch(e) {
+      return null;
+    }
+    
+    return this
+          .donationModel
+          .find()
+          .where("order_id")
+          .equals(finalId)
+          .exec();
+  }
 }

@@ -39,9 +39,71 @@ export class DonationsController {
   }
 
   //FIXME Arreglar para que retorne Tracking en lugar de Donation
+  //TODO revisar si se utiliza, tal vez se podría eliminar. Si se utiliza, cambiar el path porque coincide con getById
   @Get(':supplyId')
   getAllBySupplyId(@Param('supplyId') supplyId: string) {
     return this.donationsService.findAllBySupplyId(supplyId);
+  }
+
+  /**
+  Finds an order and associated donations by order tracking number
+  or a donation tracking number.
+
+  @param trackingNumber Order or donation tracking number. If it is a
+  donation tracking number, this method will find the associated order
+  but no other donations.
+  */
+  @Get('tracking/:trackingNumber')
+  async getByTrackingNumber(@Param('trackingNumber') trackingNumber: string) {
+
+    /*
+    order: OrderOuDto
+    donations: [DonationOutDto...]
+    */
+    return new Promise(async (resolve, reject) => {
+
+      
+      let order = await this.ordersService.findByTrackingNumber(trackingNumber);
+      let associatedDonations = [];
+
+      if (order == null) {
+
+        //Tracking number must be from a donation
+        let donation = await this.donationsService.findByTrackingNumber(trackingNumber)
+
+        //Can not find any model by tracking number
+        if (donation == null) {
+          reject(new NotFoundException());
+          return;
+        }
+
+        //After donation model has been found, we get the associated orde model.
+        order = await this.ordersService.findById(donation.order);
+
+        //If not order model is found, NotFound is returned.
+        if (order == null) {
+          reject(new NotFoundException());
+          return;
+        }
+
+        //Since tracking number is from a donation, only that model will be returned.
+        associatedDonations = [donation];
+
+      } else {
+
+        //Find all donation models for that order.
+        associatedDonations = await this.donationsService.findByOrderId(order.id);
+      }
+
+      if (associatedDonations == null) {
+        associatedDonations = [];
+      }
+
+      resolve({
+        order: new OrderOutDto(order, order.healthCenter.toString()),
+        donations: associatedDonations.map(current => new DonationOutDto(current))
+      });
+    });
   }
 
   @Post()

@@ -78,7 +78,7 @@ export class DonationsController {
         }
 
         //After donation model has been found, we get the associated orde model.
-        order = await this.ordersService.findById(donation.order);
+        order = await this.ordersService.findById(donation.order.toString());
 
         //If not order model is found, NotFound is returned.
         if (order == null) {
